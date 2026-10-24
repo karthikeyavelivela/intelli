@@ -1,0 +1,608 @@
+[
+ {
+  "id": "c01",
+  "description": "Identical definitions",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c02",
+  "description": "Case and whitespace only",
+  "a": {
+   "formula": "sum( Net_Sales )",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c03",
+  "description": "Commutative addition reordered",
+  "a": {
+   "formula": "SUM(net_sales) + SUM(tax)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(tax)+SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c04",
+  "description": "Finance subtracts refunds",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales) - SUM(refund_amount)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula"
+  ]
+ },
+ {
+  "id": "c05",
+  "description": "COUNT vs COUNT_DISTINCT",
+  "a": {
+   "formula": "COUNT(order_id)",
+   "filters": null,
+   "unit": "count",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "COUNT_DISTINCT(order_id)",
+   "filters": null,
+   "unit": "count",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "aggregation"
+  ]
+ },
+ {
+  "id": "c06",
+  "description": "SUM vs AVG",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "AVG(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "aggregation"
+  ]
+ },
+ {
+  "id": "c07",
+  "description": "Region filter only on one side",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": "region = 'EU'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "filter"
+  ]
+ },
+ {
+  "id": "c08",
+  "description": "Filter conjunct order swapped",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": "region = 'EU' AND channel = 'Online'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": "channel = 'Online' AND region = 'EU'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c09",
+  "description": "Currency differs INR vs USD",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "USD",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "unit"
+  ]
+ },
+ {
+  "id": "c10",
+  "description": "INR vs percent",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "percent",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "unit"
+  ]
+ },
+ {
+  "id": "c11",
+  "description": "all_time vs ytd",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "ytd",
+   "date_column": "order_date",
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "date_range"
+  ]
+ },
+ {
+  "id": "c12",
+  "description": "Same formula different dataset",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds2"
+  },
+  "expected": [
+   "dataset"
+  ]
+ },
+ {
+  "id": "c13",
+  "description": "Different measure and filter",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": "region = 'EU'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(gross_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula",
+   "filter"
+  ]
+ },
+ {
+  "id": "c14",
+  "description": "Unit missing on one side",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": null,
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "unit"
+  ]
+ },
+ {
+  "id": "c15",
+  "description": "Aggregation, unit and window all differ",
+  "a": {
+   "formula": "SUM(quantity)",
+   "filters": null,
+   "unit": "count",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "AVG(quantity)",
+   "filters": null,
+   "unit": "units",
+   "time_window": "last_30_days",
+   "date_column": "order_date",
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "aggregation",
+   "unit",
+   "date_range"
+  ]
+ },
+ {
+  "id": "c16",
+  "description": "Same window, different date column",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "ytd",
+   "date_column": "order_date",
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "ytd",
+   "date_column": "ship_date",
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "date_range"
+  ]
+ },
+ {
+  "id": "c17",
+  "description": "Ratio inverted",
+  "a": {
+   "formula": "SUM(cost)/SUM(net_sales)",
+   "filters": null,
+   "unit": "percent",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)/SUM(cost)",
+   "filters": null,
+   "unit": "percent",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula"
+  ]
+ },
+ {
+  "id": "c18",
+  "description": "Filter in WHERE clause vs filters field",
+  "a": {
+   "formula": "SUM(net_sales) WHERE region = 'EU'",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": "region = 'EU'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c19",
+  "description": "IN list order swapped",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": "region IN ('EU','US')",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": "region IN ('US','EU')",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c20",
+  "description": "Revenue vs net-of-discount",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(gross_sales) - SUM(discount)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula"
+  ]
+ },
+ {
+  "id": "c21",
+  "description": "Distinct customers vs rows",
+  "a": {
+   "formula": "COUNT_DISTINCT(customer_id)",
+   "filters": null,
+   "unit": "count",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "COUNT(*)",
+   "filters": null,
+   "unit": "count",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "aggregation"
+  ]
+ },
+ {
+  "id": "c22",
+  "description": "Identical ratio formulas",
+  "a": {
+   "formula": "SUM(cost)/SUM(net_sales)*100",
+   "filters": null,
+   "unit": "percent",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "sum(cost) / sum(net_sales) * 100",
+   "filters": null,
+   "unit": "percent",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c23",
+  "description": "Revenue excluding GST vs including GST (invoice value)",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_amount)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula"
+  ]
+ },
+ {
+  "id": "c24",
+  "description": "GST added to net sales, operands reordered",
+  "a": {
+   "formula": "SUM(net_sales) + SUM(gst_amount)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(gst_amount)+SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ },
+ {
+  "id": "c25",
+  "description": "Finance nets refunds off Indian revenue",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": "region = 'North'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales) - SUM(refund_amount)",
+   "filters": "region = 'North'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "formula"
+  ]
+ },
+ {
+  "id": "c26",
+  "description": "Financial-year-to-date vs all time",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales)",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "ytd",
+   "date_column": "order_date",
+   "dataset_id": "ds1"
+  },
+  "expected": [
+   "date_range"
+  ]
+ },
+ {
+  "id": "c27",
+  "description": "UPI-only filter written two ways",
+  "a": {
+   "formula": "SUM(net_sales)",
+   "filters": "payment_method = 'UPI' AND region = 'South'",
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "b": {
+   "formula": "SUM(net_sales) WHERE region = 'South' AND payment_method = 'UPI'",
+   "filters": null,
+   "unit": "INR",
+   "time_window": "all_time",
+   "date_column": null,
+   "dataset_id": "ds1"
+  },
+  "expected": []
+ }
+]

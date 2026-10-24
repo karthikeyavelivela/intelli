@@ -1,0 +1,33 @@
+flowchart TB
+  subgraph FE["Frontend (React + TypeScript)"]
+    PUB["Public pages<br/>Landing, About, Login, Register,<br/>Forgot / Reset"]
+    SHELL["App shell<br/>sidebar, top bar, breadcrumbs,<br/>theme toggle, notifications, TARA quick-ask"]
+    PAGES["20 app pages<br/>Dashboard, Metrics, Datasets, Generator,<br/>Conflicts, Formula Lab, Versions, Ask TARA,<br/>Dashboards, Evaluation, Reports, Admin ..."]
+    LIB["lib: api client (CSRF, refresh), auth, theme,<br/>INR / IST formatters"]
+  end
+  subgraph BE["Backend (FastAPI)"]
+    RT["Routers (15)"]
+    DEP["deps: current_user, require(capability),<br/>rate_limit, pagination"]
+    subgraph SVC["Services"]
+      FORM["formula.py<br/>lexer, parser, typed AST, SQL compiler"]
+      ENG["engine.py<br/>DuckDB execution, timeouts, row limits"]
+      MET["metrics.py<br/>workflow + immutable versions"]
+      CON["conflicts.py<br/>structural diff + AI suggestions"]
+      TARA["tara.py<br/>grounded metric generator"]
+      PLAN["planner.py<br/>NL question to query plan,<br/>Indian fiscal calendar"]
+      ING["ingest.py<br/>file / DB import, profiling"]
+      EVA["evaluation.py<br/>measured KPIs, ground-truth cases"]
+      REP["reports.py<br/>CSV / XLSX / PDF"]
+      CAL["calendar_in.py + formatting.py<br/>FY Apr-Mar, IST, INR en-IN"]
+    end
+    MODELS["SQLAlchemy 2 models + Alembic"]
+  end
+  FE -->|"/api (cookies)"| RT --> DEP
+  RT --> SVC
+  PLAN --> CAL
+  PLAN --> ENG
+  TARA --> FORM
+  MET --> FORM
+  CON --> FORM
+  ENG --> FORM
+  SVC --> MODELS

@@ -1,0 +1,84 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource/instrument-serif";
+@import "@fontsource/instrument-serif/400-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Strict black & white brand with ONE restrained accent (soft violet). */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 6%;
+  --card: 0 0% 100%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 38%; /* AA on white */
+  --border: 0 0% 90%;
+  --input: 0 0% 86%;
+  --primary: 0 0% 6%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 252 82% 58%;
+  --accent-foreground: 0 0% 100%;
+  --ring: 252 82% 58%;
+  --success: 152 55% 30%;
+  --warning: 32 85% 33%;
+  --danger: 0 68% 42%;
+  --shadow: 0 0% 0%;
+  --chart-1: 252 82% 58%;
+  --chart-2: 0 0% 12%;
+  --chart-3: 0 0% 42%;
+  --chart-4: 0 0% 62%;
+  --chart-5: 0 0% 80%;
+  --grid: 0 0% 92%;
+}
+.dark {
+  --background: 0 0% 3.5%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 6.5%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 66%;
+  --border: 0 0% 17%;
+  --input: 0 0% 22%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 0 0% 6%;
+  --accent: 252 90% 72%;
+  --accent-foreground: 0 0% 6%;
+  --ring: 252 90% 72%;
+  --success: 152 55% 55%;
+  --warning: 38 90% 62%;
+  --danger: 0 80% 68%;
+  --shadow: 0 0% 0%;
+  --chart-1: 252 90% 72%;
+  --chart-2: 0 0% 96%;
+  --chart-3: 0 0% 68%;
+  --chart-4: 0 0% 46%;
+  --chart-5: 0 0% 30%;
+  --grid: 0 0% 15%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-background text-foreground font-sans antialiased; font-feature-settings: "cv11", "ss01"; }
+  :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
+  ::selection { background: hsl(var(--accent) / 0.25); }
+  h1, h2, h3, h4 { @apply tracking-tight; }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border bg-card shadow-soft; }
+  .card-hover { @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift; }
+  .display { @apply font-display font-normal tracking-tight; }
+  .eyebrow { @apply text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground; }
+  .skeleton { @apply relative overflow-hidden rounded-md bg-muted; }
+  .skeleton::after { content: ""; @apply absolute inset-0 -translate-x-full animate-shimmer; background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.06), transparent); }
+  .bw-img { filter: grayscale(1) contrast(1.08) brightness(0.98); }
+  .dark .bw-img { filter: grayscale(1) contrast(1.1) brightness(0.82); }
+  .grid-bg { background-image: linear-gradient(hsl(var(--border) / .6) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border) / .6) 1px, transparent 1px); background-size: 44px 44px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+}
+
+.react-grid-item.react-grid-placeholder { background: hsl(var(--accent)) !important; opacity: .12 !important; border-radius: 1rem; }
+.react-grid-item > .react-resizable-handle::after { border-color: hsl(var(--muted-foreground)) !important; }
+.recharts-text { fill: hsl(var(--muted-foreground)); }
+.recharts-default-tooltip { background: hsl(var(--card)) !important; border-color: hsl(var(--border)) !important; border-radius: 12px !important; }

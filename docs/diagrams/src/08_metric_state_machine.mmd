@@ -1,0 +1,17 @@
+stateDiagram-v2
+  [*] --> draft: create (version 1)
+  draft --> draft: edit (new immutable version)
+  draft --> in_review: submit (formula must validate)
+  in_review --> approved: approve (reviewer, not the author)
+  in_review --> draft: reject (comment required)
+  approved --> published: publish (one live definition per key)
+  published --> draft: edit (new draft version, previous version stays live)
+  published --> deprecated: deprecate
+  approved --> deprecated: deprecate
+  draft --> deprecated: delete (soft)
+  published --> published: rollback creates a NEW version that becomes live
+  deprecated --> [*]
+  note right of published
+    is_live = true
+    unique index (workspace, key) WHERE is_live
+  end note

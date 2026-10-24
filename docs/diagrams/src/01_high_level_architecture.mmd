@@ -1,0 +1,26 @@
+flowchart LR
+  U["Browser<br/>React SPA (Vite build)"]
+  subgraph EDGE["Edge"]
+    N["Nginx<br/>static files + /api reverse proxy<br/>SSE streaming for Ask TARA"]
+  end
+  subgraph API["FastAPI application"]
+    R["Routers<br/>auth, datasets, metrics, conflicts,<br/>validation, execution, chat, dashboards,<br/>evaluation, reports, notifications"]
+    S["Services<br/>formula compiler, engine,<br/>conflicts, TARA, planner, ingest"]
+    A["Auth and RBAC<br/>JWT cookies, capabilities"]
+  end
+  subgraph STORE["Storage"]
+    PG[("PostgreSQL<br/>metadata, versions,<br/>audit, conflicts")]
+    FS[("Parquet files<br/>shared volume")]
+    RD[("Redis<br/>Celery broker")]
+  end
+  W["Celery worker<br/>ingestion: validate, convert,<br/>profile (DuckDB / Polars)"]
+  D["DuckDB<br/>in-memory, read-only views"]
+  AI["OpenAI / Gemini<br/>(optional, key only on server)"]
+  U -->|HTTPS| N --> R
+  R --> A
+  R --> S
+  S --> PG
+  S --> D --> FS
+  R -->|enqueue| RD --> W --> FS
+  W --> PG
+  S -.->|plans, suggestions only| AI

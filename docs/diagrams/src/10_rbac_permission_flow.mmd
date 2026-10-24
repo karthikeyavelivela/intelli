@@ -1,0 +1,16 @@
+flowchart TB
+  REQ["HTTP request to an endpoint"] --> CK{"access_token cookie<br/>or Bearer token?"}
+  CK -->|missing / invalid| E401["401 unauthorized"]
+  CK -->|valid JWT| CS{"Mutating request with cookie auth?"}
+  CS -->|"no X-Requested-With header"| E403C["403 csrf"]
+  CS -->|ok| U["Load user: active? workspace?"]
+  U -->|disabled| E401
+  U --> CAP{"Endpoint declares<br/>require(capability)?"}
+  CAP -->|no| OBJ
+  CAP -->|yes| ROLE{"role in CAPABILITIES[capability]?"}
+  ROLE -->|no| E403["403 forbidden"]
+  ROLE -->|yes| OBJ["Object access: WHERE workspace_id = user.workspace_id"]
+  OBJ -->|"not in my workspace"| E404["404 not found (existence is never leaked)"]
+  OBJ -->|ok| RULES["Business rules<br/>e.g. author cannot approve own metric,<br/>cannot demote self"]
+  RULES --> DO["Execute + write audit log"]
+  FEG["Frontend: RequireCap route guard + role-aware nav<br/>(same capability names from /api/auth/me)"] -. "UX only, never trusted" .-> REQ

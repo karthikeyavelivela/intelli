@@ -1,0 +1,13 @@
+stateDiagram-v2
+  [*] --> open: detected
+  open --> assigned: assign (admin / reviewer)
+  assigned --> in_review: start review
+  in_review --> approved: approve resolution
+  approved --> resolved: resolve (rename / align / deprecate / accept both) - creates a new metric version
+  open --> dismissed: dismiss (note required)
+  assigned --> dismissed: dismiss
+  in_review --> dismissed: dismiss
+  approved --> dismissed: dismiss
+  dismissed --> open: reopen
+  resolved --> open: reopen / re-detected with changed definitions
+  resolved --> [*]

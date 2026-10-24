@@ -1,0 +1,1068 @@
+{
+ "started_at_ist": "24-Oct-2026 18:10 IST",
+ "environment": {
+  "platform": "Windows-10-10.0.26300-SP0",
+  "python": "3.11.9",
+  "cpu_count": 22,
+  "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+  "duckdb": "1.1.3",
+  "polars": "1.18.0",
+  "database": "SQLite (temporary)",
+  "job_runner": "in-process thread (USE_CELERY=false)",
+  "ai_mode": "offline deterministic (no AI key)"
+ },
+ "seed_seconds": 2.71,
+ "dataset": {
+  "name": "sales_transactions",
+  "rows": 62000,
+  "columns": 24,
+  "parquet_bytes": 1743248
+ },
+ "ingestion": [
+  {
+   "format": "CSV",
+   "rows": 62000,
+   "file_mb": 11.8,
+   "runs": 3,
+   "job_ms": {
+    "n": 3,
+    "mean": 955.33,
+    "min": 907.0,
+    "p50": 955.0,
+    "p95": 999.1,
+    "p99": 1003.02,
+    "max": 1004.0
+   },
+   "upload_to_ready_ms": {
+    "n": 3,
+    "mean": 1064.87,
+    "min": 1002.4,
+    "p50": 1089.5,
+    "p95": 1101.38,
+    "p99": 1102.44,
+    "max": 1102.7
+   },
+   "rows_per_second": 64899
+  },
+  {
+   "format": "Parquet",
+   "rows": 62000,
+   "file_mb": 1.7,
+   "runs": 3,
+   "job_ms": {
+    "n": 3,
+    "mean": 406.33,
+    "min": 387.0,
+    "p50": 411.0,
+    "p95": 420.0,
+    "p99": 420.8,
+    "max": 421.0
+   },
+   "upload_to_ready_ms": {
+    "n": 3,
+    "mean": 489.26,
+    "min": 448.73,
+    "p50": 507.25,
+    "p95": 511.36,
+    "p99": 511.72,
+    "max": 511.81
+   },
+   "rows_per_second": 152584
+  },
+  {
+   "format": "NDJSON",
+   "rows": 62000,
+   "file_mb": 31.2,
+   "runs": 3,
+   "job_ms": {
+    "n": 3,
+    "mean": 1322.0,
+    "min": 1216.0,
+    "p50": 1374.0,
+    "p95": 1375.8,
+    "p99": 1375.96,
+    "max": 1376.0
+   },
+   "upload_to_ready_ms": {
+    "n": 3,
+    "mean": 1503.62,
+    "min": 1375.23,
+    "p50": 1566.59,
+    "p95": 1568.81,
+    "p99": 1569.01,
+    "max": 1569.06
+   },
+   "rows_per_second": 46899
+  },
+  {
+   "format": "CSV x4 (scale test)",
+   "rows": 248000,
+   "file_mb": 47.6,
+   "runs": 1,
+   "job_ms": {
+    "mean": 1774.0
+   },
+   "upload_to_ready_ms": {
+    "mean": 2062.6
+   },
+   "rows_per_second": 139797
+  }
+ ],
+ "query_latency": {
+  "workloads": 14,
+  "samples": 420,
+  "engine_ms": {
+   "n": 420,
+   "mean": 6.9,
+   "min": 2.59,
+   "p50": 6.37,
+   "p95": 12.77,
+   "p99": 16.19,
+   "max": 17.13
+  },
+  "http_roundtrip_ms": {
+   "n": 420,
+   "mean": 28.59,
+   "min": 18.21,
+   "p50": 27.85,
+   "p95": 40.17,
+   "p99": 44.71,
+   "max": 55.77
+  },
+  "per_workload": [
+   {
+    "workload": "Return Rate (KPI)",
+    "engine_p50_ms": 6.04,
+    "engine_p95_ms": 7.85,
+    "http_p50_ms": 31.91,
+    "http_p95_ms": 36.89
+   },
+   {
+    "workload": "Active Customers (KPI)",
+    "engine_p50_ms": 5.33,
+    "engine_p95_ms": 6.14,
+    "http_p50_ms": 25.59,
+    "http_p95_ms": 35.6
+   },
+   {
+    "workload": "Gross Margin % (KPI)",
+    "engine_p50_ms": 5.91,
+    "engine_p95_ms": 7.11,
+    "http_p50_ms": 23.67,
+    "http_p95_ms": 27.48
+   },
+   {
+    "workload": "GST Collected (KPI)",
+    "engine_p50_ms": 3.42,
+    "engine_p95_ms": 5.13,
+    "http_p50_ms": 21.78,
+    "http_p95_ms": 26.45
+   },
+   {
+    "workload": "Refunds (KPI)",
+    "engine_p50_ms": 3.23,
+    "engine_p95_ms": 4.37,
+    "http_p50_ms": 24.17,
+    "http_p95_ms": 32.13
+   },
+   {
+    "workload": "Average Order Value (KPI)",
+    "engine_p50_ms": 13.67,
+    "engine_p95_ms": 16.51,
+    "http_p50_ms": 41.28,
+    "http_p95_ms": 50.94
+   },
+   {
+    "workload": "Units Sold (KPI)",
+    "engine_p50_ms": 3.44,
+    "engine_p95_ms": 4.55,
+    "http_p50_ms": 24.93,
+    "http_p95_ms": 33.11
+   },
+   {
+    "workload": "Orders (KPI)",
+    "engine_p50_ms": 8.64,
+    "engine_p95_ms": 10.03,
+    "http_p50_ms": 29.45,
+    "http_p95_ms": 32.08
+   },
+   {
+    "workload": "Revenue (KPI)",
+    "engine_p50_ms": 3.71,
+    "engine_p95_ms": 4.68,
+    "http_p50_ms": 24.28,
+    "http_p95_ms": 28.27
+   },
+   {
+    "workload": "Revenue by month",
+    "engine_p50_ms": 6.35,
+    "engine_p95_ms": 8.51,
+    "http_p50_ms": 27.32,
+    "http_p95_ms": 35.87
+   },
+   {
+    "workload": "Revenue by state (top 10)",
+    "engine_p50_ms": 8.44,
+    "engine_p95_ms": 10.49,
+    "http_p50_ms": 32.1,
+    "http_p95_ms": 38.19
+   },
+   {
+    "workload": "Revenue by region x payment method",
+    "engine_p50_ms": 8.5,
+    "engine_p95_ms": 10.5,
+    "http_p50_ms": 30.33,
+    "http_p95_ms": 33.91
+   },
+   {
+    "workload": "Top 10 customers by revenue",
+    "engine_p50_ms": 9.73,
+    "engine_p95_ms": 11.62,
+    "http_p50_ms": 30.27,
+    "http_p95_ms": 33.49
+   },
+   {
+    "workload": "Return rate by payment method",
+    "engine_p50_ms": 7.75,
+    "engine_p95_ms": 9.09,
+    "http_p50_ms": 27.98,
+    "http_p95_ms": 30.39
+   }
+  ]
+ },
+ "dashboards": [
+  {
+   "template": "sales",
+   "widgets": 8,
+   "server_load_ms": {
+    "n": 10,
+    "mean": 177.19,
+    "min": 163.0,
+    "p50": 174.95,
+    "p95": 197.51,
+    "p99": 199.02,
+    "max": 199.4
+   },
+   "http_ms": {
+    "n": 10,
+    "mean": 188.62,
+    "min": 173.63,
+    "p50": 186.23,
+    "p95": 208.7,
+    "p99": 210.88,
+    "max": 211.42
+   },
+   "failed_widgets": 0
+  },
+  {
+   "template": "finance",
+   "widgets": 8,
+   "server_load_ms": {
+    "n": 10,
+    "mean": 163.13,
+    "min": 147.2,
+    "p50": 161.05,
+    "p95": 179.76,
+    "p99": 183.79,
+    "max": 184.8
+   },
+   "http_ms": {
+    "n": 10,
+    "mean": 173.42,
+    "min": 156.61,
+    "p50": 170.62,
+    "p95": 191.03,
+    "p99": 194.68,
+    "max": 195.59
+   },
+   "failed_widgets": 0
+  },
+  {
+   "template": "operations",
+   "widgets": 7,
+   "server_load_ms": {
+    "n": 10,
+    "mean": 149.05,
+    "min": 131.2,
+    "p50": 146.1,
+    "p95": 166.81,
+    "p99": 170.88,
+    "max": 171.9
+   },
+   "http_ms": {
+    "n": 10,
+    "mean": 158.95,
+    "min": 141.08,
+    "p50": 156.05,
+    "p95": 177.55,
+    "p99": 181.87,
+    "max": 182.95
+   },
+   "failed_widgets": 0
+  }
+ ],
+ "ask_tara": [
+  {
+   "question": "What was net revenue by month in the last quarter of this financial year?",
+   "result": "answer",
+   "http_ms": {
+    "n": 10,
+    "mean": 37.0,
+    "min": 31.15,
+    "p50": 34.4,
+    "p95": 50.09,
+    "p99": 58.54,
+    "max": 60.65
+   }
+  },
+  {
+   "question": "Which 5 states had the highest sales this year?",
+   "result": "answer",
+   "http_ms": {
+    "n": 10,
+    "mean": 36.72,
+    "min": 30.2,
+    "p50": 37.36,
+    "p95": 40.91,
+    "p99": 41.61,
+    "max": 41.78
+   }
+  },
+  {
+   "question": "Compare Diwali-season sales with the previous quarter",
+   "result": "answer",
+   "http_ms": {
+    "n": 10,
+    "mean": 50.17,
+    "min": 46.56,
+    "p50": 50.01,
+    "p95": 53.84,
+    "p99": 55.19,
+    "max": 55.53
+   }
+  },
+  {
+   "question": "What is the UPI vs COD split by region?",
+   "result": "answer",
+   "http_ms": {
+    "n": 10,
+    "mean": 38.99,
+    "min": 31.97,
+    "p50": 38.28,
+    "p95": 48.05,
+    "p99": 50.73,
+    "max": 51.4
+   }
+  },
+  {
+   "question": "Top 10 customers by revenue",
+   "result": "answer",
+   "http_ms": {
+    "n": 10,
+    "mean": 39.98,
+    "min": 33.5,
+    "p50": 38.92,
+    "p95": 46.88,
+    "p99": 48.06,
+    "max": 48.36
+   }
+  },
+  {
+   "question": "What is the weather in Paris?",
+   "result": "unsupported",
+   "http_ms": {
+    "n": 10,
+    "mean": 14.87,
+    "min": 11.03,
+    "p50": 15.47,
+    "p95": 17.26,
+    "p99": 17.76,
+    "max": 17.89
+   }
+  },
+  {
+   "question": "revenue by weather",
+   "result": "unsupported",
+   "http_ms": {
+    "n": 10,
+    "mean": 12.89,
+    "min": 11.24,
+    "p50": 12.5,
+    "p95": 15.66,
+    "p99": 16.42,
+    "max": 16.61
+   }
+  }
+ ],
+ "conflict_detection_result": {
+  "created": 4,
+  "total_open": 4
+ },
+ "conflict_detection_ms": {
+  "n": 5,
+  "mean": 15.25,
+  "min": 12.01,
+  "p50": 13.59,
+  "p95": 22.08,
+  "p99": 23.69,
+  "max": 24.09
+ },
+ "tara_generator_session": {
+  "prompts": 10,
+  "generated": 8,
+  "valid": 8,
+  "accepted": 8,
+  "latency_ms": {
+   "n": 8,
+   "mean": 0.64,
+   "min": 0.3,
+   "p50": 0.4,
+   "p95": 1.74,
+   "p99": 2.19,
+   "max": 2.3
+  },
+  "note": "Scripted session in offline mode: 2 of the 10 prompts are deliberately unanswerable."
+ },
+ "evaluation": {
+  "assumptions": {
+   "manual_metric_creation_seconds": 360,
+   "manual_pair_review_seconds": 45,
+   "note": "Manual baselines are explicit reference assumptions, not measurements. Everything else is measured."
+  },
+  "dataset_processing": {
+   "jobs": 16,
+   "avg_ms": 653.1,
+   "p95_ms": 1376,
+   "rows_per_second": 86494,
+   "failed_jobs": 0,
+   "per_dataset": [
+    {
+     "dataset": "sales_x4",
+     "rows": 248000,
+     "ms": 1774,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 1374,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 1376,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 1216,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 421,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 411,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 387,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 907,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 955,
+     "runner": "thread"
+    },
+    {
+     "dataset": "sales",
+     "rows": 62000,
+     "ms": 1004,
+     "runner": "thread"
+    }
+   ]
+  },
+  "query_latency": {
+   "benchmark_queries": 9,
+   "benchmark_avg_ms": 4.6,
+   "benchmark_p95_ms": 8.92,
+   "history_samples": 300,
+   "history_p50_ms": 7.57,
+   "history_p95_ms": 11.5,
+   "benchmark": [
+    {
+     "metric": "Revenue",
+     "ms": 3.11,
+     "ok": true
+    },
+    {
+     "metric": "Orders",
+     "ms": 7.98,
+     "ok": true
+    },
+    {
+     "metric": "Units Sold",
+     "ms": 2.57,
+     "ok": true
+    },
+    {
+     "metric": "Average Order Value",
+     "ms": 8.92,
+     "ok": true
+    },
+    {
+     "metric": "Refunds",
+     "ms": 2.55,
+     "ok": true
+    },
+    {
+     "metric": "GST Collected",
+     "ms": 3.09,
+     "ok": true
+    },
+    {
+     "metric": "Gross Margin %",
+     "ms": 5.56,
+     "ok": true
+    },
+    {
+     "metric": "Active Customers",
+     "ms": 4.06,
+     "ok": true
+    },
+    {
+     "metric": "Return Rate",
+     "ms": 3.53,
+     "ok": true
+    }
+   ]
+  },
+  "validation": {
+   "metrics_checked": 23,
+   "metrics_passing": 23,
+   "pass_rate": 1.0,
+   "lab_validations": 0,
+   "lab_pass_rate": null
+  },
+  "query_success": {
+   "total": 719,
+   "ok": 719,
+   "success_rate": 1.0,
+   "by_kind": [
+    {
+     "kind": "execute",
+     "total": 429,
+     "ok": 429,
+     "rate": 1.0
+    },
+    {
+     "kind": "dashboard",
+     "total": 230,
+     "ok": 230,
+     "rate": 1.0
+    },
+    {
+     "kind": "chat",
+     "total": 60,
+     "ok": 60,
+     "rate": 1.0
+    }
+   ]
+  },
+  "conflict_detection": {
+   "cases": 27,
+   "automated": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "tp": 21,
+    "fp": 0,
+    "fn": 0
+   },
+   "naive_manual": {
+    "precision": 0.5484,
+    "recall": 0.8095,
+    "f1": 0.6538,
+    "tp": 17,
+    "fp": 14,
+    "fn": 4
+   },
+   "rows": [
+    {
+     "id": "c01",
+     "description": "Identical definitions",
+     "expected": [],
+     "automated": [],
+     "naive": [],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c02",
+     "description": "Case and whitespace only",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c03",
+     "description": "Commutative addition reordered",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c04",
+     "description": "Finance subtracts refunds",
+     "expected": [
+      "formula"
+     ],
+     "automated": [
+      "formula"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c05",
+     "description": "COUNT vs COUNT_DISTINCT",
+     "expected": [
+      "aggregation"
+     ],
+     "automated": [
+      "aggregation"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c06",
+     "description": "SUM vs AVG",
+     "expected": [
+      "aggregation"
+     ],
+     "automated": [
+      "aggregation"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c07",
+     "description": "Region filter only on one side",
+     "expected": [
+      "filter"
+     ],
+     "automated": [
+      "filter"
+     ],
+     "naive": [
+      "filter"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c08",
+     "description": "Filter conjunct order swapped",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "filter"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c09",
+     "description": "Currency differs INR vs USD",
+     "expected": [
+      "unit"
+     ],
+     "automated": [
+      "unit"
+     ],
+     "naive": [
+      "unit"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c10",
+     "description": "INR vs percent",
+     "expected": [
+      "unit"
+     ],
+     "automated": [
+      "unit"
+     ],
+     "naive": [
+      "unit"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c11",
+     "description": "all_time vs ytd",
+     "expected": [
+      "date_range"
+     ],
+     "automated": [
+      "date_range"
+     ],
+     "naive": [
+      "date_range"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c12",
+     "description": "Same formula different dataset",
+     "expected": [
+      "dataset"
+     ],
+     "automated": [
+      "dataset"
+     ],
+     "naive": [
+      "dataset"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c13",
+     "description": "Different measure and filter",
+     "expected": [
+      "filter",
+      "formula"
+     ],
+     "automated": [
+      "filter",
+      "formula"
+     ],
+     "naive": [
+      "filter",
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c14",
+     "description": "Unit missing on one side",
+     "expected": [
+      "unit"
+     ],
+     "automated": [
+      "unit"
+     ],
+     "naive": [
+      "unit"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c15",
+     "description": "Aggregation, unit and window all differ",
+     "expected": [
+      "aggregation",
+      "date_range",
+      "unit"
+     ],
+     "automated": [
+      "aggregation",
+      "date_range",
+      "unit"
+     ],
+     "naive": [
+      "date_range",
+      "formula",
+      "unit"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c16",
+     "description": "Same window, different date column",
+     "expected": [
+      "date_range"
+     ],
+     "automated": [
+      "date_range"
+     ],
+     "naive": [
+      "date_range"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c17",
+     "description": "Ratio inverted",
+     "expected": [
+      "formula"
+     ],
+     "automated": [
+      "formula"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c18",
+     "description": "Filter in WHERE clause vs filters field",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "filter",
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c19",
+     "description": "IN list order swapped",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "filter"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c20",
+     "description": "Revenue vs net-of-discount",
+     "expected": [
+      "formula"
+     ],
+     "automated": [
+      "formula"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c21",
+     "description": "Distinct customers vs rows",
+     "expected": [
+      "aggregation"
+     ],
+     "automated": [
+      "aggregation"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c22",
+     "description": "Identical ratio formulas",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c23",
+     "description": "Revenue excluding GST vs including GST (invoice value)",
+     "expected": [
+      "formula"
+     ],
+     "automated": [
+      "formula"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c24",
+     "description": "GST added to net sales, operands reordered",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    },
+    {
+     "id": "c25",
+     "description": "Finance nets refunds off Indian revenue",
+     "expected": [
+      "formula"
+     ],
+     "automated": [
+      "formula"
+     ],
+     "naive": [
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c26",
+     "description": "Financial-year-to-date vs all time",
+     "expected": [
+      "date_range"
+     ],
+     "automated": [
+      "date_range"
+     ],
+     "naive": [
+      "date_range"
+     ],
+     "automated_correct": true,
+     "naive_correct": true
+    },
+    {
+     "id": "c27",
+     "description": "UPI-only filter written two ways",
+     "expected": [],
+     "automated": [],
+     "naive": [
+      "filter",
+      "formula"
+     ],
+     "automated_correct": true,
+     "naive_correct": false
+    }
+   ],
+   "automated_exact_match": 1.0,
+   "naive_exact_match": 0.5556,
+   "eval_time_ms": 1.71
+  },
+  "ai_acceptance": {
+   "generations": 10,
+   "with_output": 8,
+   "valid": 8,
+   "accepted": 8,
+   "acceptance_rate": 0.8,
+   "validity_rate": 1.0,
+   "by_mode": [
+    {
+     "mode": "ai",
+     "count": 0,
+     "accepted": 0
+    },
+    {
+     "mode": "offline",
+     "count": 10,
+     "accepted": 8
+    }
+   ]
+  },
+  "dashboard_load": {
+   "dashboards": 5,
+   "avg_ms": 167.2,
+   "p95_ms": 230.2,
+   "items": [
+    {
+     "dashboard": "Sales Overview",
+     "widgets": 8,
+     "ms": 230.2,
+     "failed_widgets": 0
+    },
+    {
+     "dashboard": "Finance Review",
+     "widgets": 8,
+     "ms": 156.7,
+     "failed_widgets": 0
+    },
+    {
+     "dashboard": "Benchmark sales",
+     "widgets": 8,
+     "ms": 162.9,
+     "failed_widgets": 0
+    },
+    {
+     "dashboard": "Benchmark finance",
+     "widgets": 8,
+     "ms": 148.7,
+     "failed_widgets": 0
+    },
+    {
+     "dashboard": "Benchmark operations",
+     "widgets": 7,
+     "ms": 137.6,
+     "failed_widgets": 0
+    }
+   ]
+  },
+  "creation_comparison": {
+   "manual_seconds_per_metric_assumed": 360,
+   "ai_generation_avg_seconds_measured": 0.0,
+   "ai_assisted_total_seconds_est": 60.0,
+   "review_edit_seconds_assumed": 60,
+   "time_saved_pct": 83.3,
+   "tara_created_metrics": 8,
+   "tara_created_valid": 8
+  },
+  "detection_comparison": {
+   "candidate_pairs": 5,
+   "automated_ms_measured": 0.48,
+   "manual_seconds_assumed": 225,
+   "automated_precision": 1.0,
+   "automated_recall": 1.0,
+   "manual_text_diff_precision": 0.5484,
+   "manual_text_diff_recall": 0.8095
+  }
+ },
+ "evaluation_run_ms": 1047.6,
+ "finished_at_ist": "24-Oct-2026 18:11 IST"
+}

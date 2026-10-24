@@ -1,0 +1,1 @@
+{ "name": "intellimetrics-docs-tools", "private": true, "version": "1.0.0", "description": "Renders Mermaid diagrams to SVG/PNG using the Playwright Chromium from ../../frontend", "devDependencies": { "mermaid": "10.9.3" } }

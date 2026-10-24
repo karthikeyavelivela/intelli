@@ -1,0 +1,134 @@
+erDiagram
+  api_usage {
+    VARCHAR id PK
+  }
+  audit_logs {
+    VARCHAR id PK
+    VARCHAR action
+  }
+  workspaces {
+    VARCHAR id PK
+    VARCHAR name
+  }
+  ai_generations {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR status
+  }
+  connections {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR name
+  }
+  dashboards {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR name
+  }
+  evaluation_runs {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+  }
+  executions {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+  }
+  notifications {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+  }
+  users {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR email
+    VARCHAR name
+    VARCHAR role
+  }
+  chat_conversations {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR user_id FK
+  }
+  datasets {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR name
+    VARCHAR status
+    VARCHAR connection_id FK
+  }
+  password_resets {
+    VARCHAR id PK
+    VARCHAR user_id FK
+  }
+  refresh_tokens {
+    VARCHAR id PK
+    VARCHAR user_id FK
+  }
+  chat_messages {
+    VARCHAR id PK
+    VARCHAR conversation_id FK
+    VARCHAR role
+  }
+  ingestion_jobs {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR dataset_id FK
+    VARCHAR status
+  }
+  metrics {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR key
+    VARCHAR name
+    VARCHAR dataset_id FK
+    VARCHAR owner_id FK
+    VARCHAR status
+  }
+  conflicts {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR metric_a_id FK
+    VARCHAR metric_b_id FK
+    VARCHAR status
+    VARCHAR assignee_id FK
+  }
+  metric_reviews {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR metric_id FK
+    VARCHAR user_id FK
+  }
+  metric_versions {
+    VARCHAR id PK
+    VARCHAR workspace_id FK
+    VARCHAR metric_id FK
+    VARCHAR author_id FK
+  }
+  chat_conversations ||--o{ chat_messages : has
+  connections ||--o{ datasets : has
+  datasets ||--o{ ingestion_jobs : has
+  datasets ||--o{ metrics : has
+  metrics ||--o{ conflicts : has
+  metrics ||--o{ metric_reviews : has
+  metrics ||--o{ metric_versions : has
+  users ||--o{ chat_conversations : has
+  users ||--o{ conflicts : has
+  users ||--o{ metric_reviews : has
+  users ||--o{ metric_versions : has
+  users ||--o{ metrics : has
+  users ||--o{ password_resets : has
+  users ||--o{ refresh_tokens : has
+  workspaces ||--o{ ai_generations : has
+  workspaces ||--o{ chat_conversations : has
+  workspaces ||--o{ conflicts : has
+  workspaces ||--o{ connections : has
+  workspaces ||--o{ dashboards : has
+  workspaces ||--o{ datasets : has
+  workspaces ||--o{ evaluation_runs : has
+  workspaces ||--o{ executions : has
+  workspaces ||--o{ ingestion_jobs : has
+  workspaces ||--o{ metric_reviews : has
+  workspaces ||--o{ metric_versions : has
+  workspaces ||--o{ metrics : has
+  workspaces ||--o{ notifications : has
+  workspaces ||--o{ users : has

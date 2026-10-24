@@ -1,0 +1,10 @@
+flowchart TB
+  T["Formula text<br/>e.g. SUM(net_sales) - SUM(refund_amount)<br/>WHERE region = 'South'"] --> LEX["Lexer<br/>rejects ; comments, quotes-as-identifiers,<br/>unknown characters, > 2000 chars"]
+  LEX --> PAR["Recursive-descent parser<br/>depth limit 40<br/>whitelisted functions only"]
+  PAR --> AST["Typed AST"]
+  AST --> TYP["Type + schema checks<br/>column exists, numeric / date / text,<br/>no nested aggregates,<br/>no aggregate + row-level mixing"]
+  TYP -->|error with position| REJ["FormulaError: nothing is executed"]
+  TYP --> MR["Metric references [Revenue]<br/>resolved from live definitions<br/>(cycle + depth checks, FILTER clauses)"]
+  MR --> GEN["SQL generator<br/>quoted validated identifiers,<br/>every literal becomes a bound ? parameter,<br/>division by NULLIF(x, 0)"]
+  GEN --> RUN["DuckDB run<br/>timeout via interrupt, LIMIT n+1,<br/>read-only Parquet view"]
+  RUN --> RES["Rows + duration + scanned rows<br/>+ execution history"]

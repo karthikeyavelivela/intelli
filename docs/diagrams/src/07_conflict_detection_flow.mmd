@@ -1,0 +1,21 @@
+flowchart TB
+  S["POST /api/conflicts/detect"] --> G["Load non-deprecated metrics<br/>group by governed key (and near-identical keys)"]
+  G --> R{"Live published<br/>definition in group?"}
+  R -->|yes| P1["Pairs: published reference vs every other definition"]
+  R -->|no| P2["Pairs: every definition vs every other"]
+  P1 --> D
+  P2 --> D
+  subgraph D["Deterministic structural diff (pure function)"]
+    D1["Dataset mapping"] --- D2["Aggregation functions"]
+    D2 --- D3["Formula (AST-normalised, operands sorted)"]
+    D3 --- D4["Row filters (conjunct sets, WHERE + filters field)"]
+    D4 --- D5["Unit"] --- D6["Time window / date column"]
+  end
+  D --> X{"Any differences?"}
+  X -->|no| N["No conflict"]
+  X -->|yes| SEV["Severity: low / medium / high / critical<br/>Recommendation + affected metrics and dashboards"]
+  SEV --> UPS["Create or update conflict (fingerprint avoids duplicates)<br/>audit entry + notification"]
+  G --> AI{"AI provider configured?"}
+  AI -->|yes| SEM["TARA semantic review:<br/>similar meaning, different names<br/>stored as 'TARA suggestion'"]
+  AI -->|no| SKIP["Skipped and reported as such"]
+  UPS --> WF["Workflow: open - assigned - in review - approved - resolved"]

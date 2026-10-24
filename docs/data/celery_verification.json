@@ -1,0 +1,32 @@
+{
+ "status": "ready",
+ "rows": 62000,
+ "runner": "celery",
+ "job_ms": 748,
+ "upload_to_ready_ms": 2095,
+ "progress_states_seen": [
+  [
+   "pending",
+   "queued",
+   0
+  ],
+  [
+   "processing",
+   "converting to columnar format",
+   30
+  ],
+  [
+   "processing",
+   "detecting schema & profiling columns",
+   65
+  ],
+  [
+   "ready",
+   "complete",
+   100
+  ]
+ ],
+ "broker": "redis://127.0.0.1:6390/0",
+ "database": "PostgreSQL",
+ "query_after_ingest_ms": 4.34
+}

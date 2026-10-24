@@ -1,0 +1,8 @@
+# Python packages used only to build the report pack (docs/tools). Install into any Python 3.11 environment.
+# Node packages (Mermaid diagrams, Chromium PDF output): cd docs/tools && npm install
+pypandoc_binary==1.17   # bundles pandoc: Markdown -> DOCX / HTML
+python-docx==1.2.0      # DOCX post-processing (styles, footer, table borders)
+python-pptx==1.0.2      # 08_Presentation.pptx
+matplotlib==3.11.2      # performance and test charts
+pillow==13.0.0          # image resizing for export
+pymupdf==2.0            # optional: only to inspect PDF page counts and render previews

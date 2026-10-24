@@ -1,0 +1,16 @@
+flowchart LR
+  subgraph A["Workspace A: Bharat Retail Pvt Ltd"]
+    UA["4 demo users"] --> DA["datasets, metrics,<br/>conflicts, dashboards,<br/>conversations, audit log"]
+  end
+  subgraph B["Workspace B: Sagar Foods & Beverages Ltd"]
+    UB["2 demo users"] --> DB["distributor_dispatches,<br/>3 metrics"]
+  end
+  API["FastAPI<br/>every query filters by workspace_id<br/>taken from the authenticated user, never from the client"]
+  UA --> API
+  UB --> API
+  API --> DA
+  API --> DB
+  UB -. "GET /datasets/{A's id}: 404" .-> DA
+  UB -. "POST /execution/run on A's dataset: 404" .-> DA
+  UB -. "TARA only sees B's approved metrics" .-> DA
+  TEST["pytest: test_workspace_isolation<br/>test_cannot_deactivate_self_or_cross_workspace_user"]

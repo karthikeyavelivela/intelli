@@ -1,0 +1,13 @@
+flowchart TB
+  Q["Question text<br/>'... last quarter of this financial year'"] --> TZ["Today in IST<br/>(Asia/Kolkata)"]
+  TZ --> FY["Financial year = 1 Apr to 31 Mar<br/>start year = year if month >= 4 else year - 1"]
+  FY --> FQ["Fiscal quarters<br/>Q1 Apr-Jun, Q2 Jul-Sep,<br/>Q3 Oct-Dec, Q4 Jan-Mar"]
+  Q --> RULES["Range rules<br/>FY 2025-26, FY26, Q3 FY26,<br/>last / this quarter, this / last financial year,<br/>last N days, months, festival seasons"]
+  RULES --> FQ
+  RULES --> FEST["Festival windows<br/>Diwali, Dussehra, Pongal / Sankranti,<br/>Eid, Holi, End-of-Season sale"]
+  FQ --> TR["TimeRange label + ISO start / end<br/>shown as DD-MMM-YYYY"]
+  FEST --> TR
+  TR --> CMP{"'compare A with B'?"}
+  CMP -->|yes| PREV["previous_period(A):<br/>the fiscal quarter before the quarter containing A"]
+  CMP -->|no| PLAN["Query plan"]
+  PREV --> PLAN

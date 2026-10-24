@@ -1,0 +1,23 @@
+flowchart LR
+  AD(["Admin"])
+  AN(["Data Analyst"])
+  BU(["Business User"])
+  RV(["Reviewer"])
+  subgraph SYS["IntelliMetrics AI"]
+    U1["Upload datasets / connect databases"]
+    U2["Create and edit metrics"]
+    U3["Generate metrics with TARA"]
+    U4["Formula Lab: validate and execute"]
+    U5["Run conflict detection"]
+    U6["Assign, review, resolve conflicts"]
+    U7["Approve / publish / deprecate / roll back metrics"]
+    U8["Ask TARA in plain English"]
+    U9["Build and export dashboards"]
+    U10["Run evaluation"]
+    U11["Export reports"]
+    U12["Manage users, settings, audit log"]
+  end
+  AN --- U1 & U2 & U3 & U4 & U5 & U8 & U9 & U10 & U11
+  RV --- U4 & U5 & U6 & U7 & U8 & U11
+  BU --- U8 & U9 & U11
+  AD --- U1 & U2 & U3 & U4 & U5 & U6 & U7 & U8 & U9 & U10 & U11 & U12

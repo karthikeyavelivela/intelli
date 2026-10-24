@@ -1,0 +1,26 @@
+%%{init: {"sequence": {"wrap": true, "width": 190, "messageMargin": 34, "actorMargin": 40, "mirrorActors": false}}}%%
+sequenceDiagram
+  autonumber
+  actor U as Business user
+  participant FE as React (Ask TARA)
+  participant API as API: /chat/ask/stream
+  participant PL as Planner (AI or rules)
+  participant V as Validator + permissions
+  participant C as Formula compiler
+  participant DB as DuckDB (read-only)
+  U->>FE: "Which 5 states had the highest sales this year?"
+  FE->>API: question + conversation id (cookie auth + CSRF header)
+  API->>API: load only live / approved metrics of the user's workspace
+  API->>PL: question + authorised catalog (metrics, columns, today in IST)
+  PL-->>API: structured JSON plan (metric, dimension, time range, filters, order, limit)
+  API->>V: validate plan against catalog
+  alt metric / column not in catalog, or unsupported
+    V-->>FE: "I can't answer that" (no numbers, no SQL)
+  else plan valid
+    V->>C: metric formula + plan filters (all values as bound parameters)
+    C->>DB: parameterised SQL (SELECT ... FROM data WHERE ... GROUP BY ... LIMIT ?)
+    DB-->>API: real rows + duration + scanned rows
+    API->>API: compose answer text from the rows (no AI numbers), build KPI / table / chart
+    API-->>FE: SSE events: status, plan, result, text chunks, done
+  end
+  FE-->>U: table + chart + source metric version + applied filters

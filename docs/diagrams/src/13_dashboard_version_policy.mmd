@@ -1,0 +1,9 @@
+flowchart TB
+  W["Dashboard widget<br/>metric_key + optional pinned_version"] --> POL{"Dashboard version_policy"}
+  POL -->|"latest_published (default)"| LIVE["Use the snapshot of metric.published_version<br/>(the live definition)"]
+  POL -->|pinned| PIN["Use the snapshot of the chosen version number<br/>(must exist in metric_versions)"]
+  LIVE --> SNAP["Version snapshot (immutable)"]
+  PIN --> SNAP
+  SNAP --> RUN["Compile + run formula (+ filters + time window)"]
+  EDIT["Analyst edits a published metric"] --> DRAFT["New draft version<br/>live version unchanged,<br/>dashboards keep their numbers"]
+  PUBN["Reviewer publishes the new version"] --> LIVE2["Latest-published dashboards switch<br/>pinned dashboards do not"]

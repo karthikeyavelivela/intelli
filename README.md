@@ -1,0 +1,130 @@
+# IntelliMetrics AI
+
+**A governed semantic layer with TARA, an AI assistant for trusted business metrics.**
+
+> **University project.** IntelliMetrics AI is an academic capstone by **Devi Priya, Priyanka, Akshay and Bhaskar**, guided by **Dr. Asesh Kumar Tripathy**, KL University, academic year 2026-27. It is not a commercial product. All business data in the demonstration is **synthetic**.
+
+Companies often use one word for several calculations: Sales counts goods sold excluding GST, Finance subtracts refunds, Marketing quotes the invoice including GST, and all three call it *Revenue*. IntelliMetrics AI keeps **one governed definition per metric**, detects conflicting definitions automatically, stores every change as an immutable version, and lets anyone ask questions in plain English. TARA, the assistant, **never produces a number itself**: it builds a plan that is checked against approved metrics and executed by a restricted, parameterised formula engine on the real data.
+
+The demonstration is set in India: a fictional retailer, **Bharat Retail Pvt Ltd**, with 62,000 synthetic sales lines in rupees (lakh/crore formatting), GST, an April–March financial year, festival seasons (Diwali and others), UPI/COD payments, DD-MMM-YYYY dates and IST times. A second fictional company, **Sagar Foods & Beverages Ltd**, demonstrates workspace isolation.
+
+## Documentation
+
+All reports are in [`docs/`](docs) as Markdown, with Word and PDF exports in [`docs/exports`](docs/exports).
+
+| # | Document | Markdown | Word | PDF |
+|---|---|---|---|---|
+| 1 | Project Report | [md](docs/01_Project_Report.md) | [docx](docs/exports/01_Project_Report.docx) | [pdf](docs/exports/01_Project_Report.pdf) |
+| 2 | Concept Note | [md](docs/02_Concept_Note.md) | [docx](docs/exports/02_Concept_Note.docx) | [pdf](docs/exports/02_Concept_Note.pdf) |
+| 3 | System Architecture | [md](docs/03_System_Architecture.md) | [docx](docs/exports/03_System_Architecture.docx) | [pdf](docs/exports/03_System_Architecture.pdf) |
+| 4 | Testing Report | [md](docs/04_Testing_Report.md) | [docx](docs/exports/04_Testing_Report.docx) | [pdf](docs/exports/04_Testing_Report.pdf) |
+| 5 | User Guide and How To Run | [md](docs/05_User_Guide_and_How_To_Run.md) | [docx](docs/exports/05_User_Guide_and_How_To_Run.docx) | [pdf](docs/exports/05_User_Guide_and_How_To_Run.pdf) |
+| 6 | Deployment Guide | [md](docs/06_Deployment_Guide.md) | [docx](docs/exports/06_Deployment_Guide.docx) | [pdf](docs/exports/06_Deployment_Guide.pdf) |
+| 7 | Viva Preparation | [md](docs/07_Viva_Preparation.md) | [docx](docs/exports/07_Viva_Preparation.docx) | [pdf](docs/exports/07_Viva_Preparation.pdf) |
+| 8 | Presentation Outline | [md](docs/08_Presentation_Outline.md) | [docx](docs/exports/08_Presentation_Outline.docx) | [pdf](docs/exports/08_Presentation_Outline.pdf) · [pptx](docs/exports/08_Presentation.pptx) |
+
+Also: [`docs/diagrams`](docs/diagrams) (Mermaid sources, PNG and SVG), [`docs/screenshots`](docs/screenshots) (every page, light and dark, plus mobile), [`DEPLOYMENT.md`](DEPLOYMENT.md) (short deployment reference), [`REQUIREMENTS.md`](REQUIREMENTS.md) (system requirements and exact dependency versions).
+
+## What it does
+
+| Area | Summary |
+|---|---|
+| Semantic layer | Metric workflow draft → review → approve → publish; a database index guarantees exactly one live definition per metric |
+| Datasets | Upload CSV, Excel, JSON, Parquet or import from PostgreSQL/MySQL; background processing to Parquet with column profiling |
+| TARA generator | Describe a metric in English; get an editable, validated draft (never auto-published) |
+| Formula Lab | Own lexer, parser and compiler to parameterised DuckDB SQL; raw SQL is never executed |
+| Conflict centre | Automatic comparison of formula, aggregation, filters, unit, time window and dataset; severity, diff, assign → review → approve → resolve |
+| Version control | Immutable versions (ORM guard plus database trigger); rollback creates a new version |
+| Ask TARA | Natural-language questions answered from approved metrics, with the definition, date range and filters shown; refuses when it cannot answer |
+| Dashboards and reports | KPI, line, bar, pie and table widgets; Sales, Finance and Operations templates; CSV, Excel and PDF exports in INR and IST |
+| Evaluation | Measures processing time, query latency, validation pass rate, conflict-detection precision and recall |
+| Security | Four roles, workspace isolation, Argon2 passwords, httpOnly tokens, CSRF header, rate limiting, audit log |
+
+## Quick start (Windows, without Docker: the tested route)
+
+Back end, in PowerShell:
+
+```powershell
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements-dev.txt
+python -m app.seed
+uvicorn app.main:app --reload --port 8000
+```
+
+Front end, in a second window:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. API documentation: <http://localhost:8000/docs>. Reset the demonstration with `scripts\reset-demo.ps1` (or `./scripts/reset-demo.sh`) after stopping the back end.
+
+Docker Compose files are included (`docker compose up --build`, then <http://localhost:3000>) but **have not been run**: Docker is not installed on the development machine. See the [Deployment Guide](docs/06_Deployment_Guide.md) for what was and was not verified.
+
+Without an AI key TARA runs in a clearly labelled **offline deterministic mode**. To use a live model set `AI_PROVIDER=openai` and `OPENAI_API_KEY` (or `gemini` and `GEMINI_API_KEY`) in the back-end environment only.
+
+## Demonstration accounts
+
+All are marked **DEMO** and the login page can fill them in for you.
+
+| Role | Person (fictional) | Email | Password | Company |
+|---|---|---|---|---|
+| Admin | Aarav Menon | `admin@intellimetrics.demo` | `Admin@12345` | Bharat Retail Pvt Ltd |
+| Data Analyst | Diya Reddy | `analyst@intellimetrics.demo` | `Analyst@12345` | Bharat Retail Pvt Ltd |
+| Business User | Rohan Sharma | `business@intellimetrics.demo` | `Business@12345` | Bharat Retail Pvt Ltd |
+| Reviewer | Meera Iyer | `reviewer@intellimetrics.demo` | `Reviewer@12345` | Bharat Retail Pvt Ltd |
+| Admin (second company) | Suresh Naidu | `admin@sagarfoods.demo` | `Admin@12345` | Sagar Foods & Beverages Ltd |
+| Analyst (second company) | Kavya Raju | `analyst@sagarfoods.demo` | `Analyst@12345` | Sagar Foods & Beverages Ltd |
+
+The permission matrix is in the [System Architecture](docs/03_System_Architecture.md) document and in the application under *Users & workspace*. These passwords are public: never place real data in an installation that still has the demo accounts.
+
+## Suggested questions for Ask TARA
+
+* What was net revenue by month in the last quarter of this financial year?
+* Which 5 states had the highest sales this year?
+* Compare Diwali-season sales with the previous quarter
+* What is the UPI vs COD split by region?
+* Top 10 customers by revenue
+
+## Tests
+
+```powershell
+cd backend;  python -m pytest tests -q        # back end (SQLite); also run against PostgreSQL with TEST_DATABASE_URL
+cd frontend; npx vitest run                   # component and library tests
+cd frontend; npx playwright install chromium; npx playwright test   # browser end-to-end tests
+```
+
+The latest measured results (counts, coverage, benchmarks) are in the [Testing Report](docs/04_Testing_Report.md).
+
+## Limitations, stated plainly
+
+* Docker and Docker Compose were **not run** (Docker not installed on the development machine); each service was verified separately instead (PostgreSQL 18.2, Redis + Celery, MySQL 8.0).
+* **No live AI provider was used**; the offline planner is what was tested end to end, and the AI provider code was tested with mocked responses.
+* The GitHub Actions workflow in `.github/workflows` was written but has not been executed on GitHub.
+* No load test, no external security assessment, no user study; browser tests used Chromium only.
+* Time-saving figures in the evaluation use stated assumptions for manual effort.
+
+## Project layout
+
+```
+backend/   app/{routers,services,models.py,permissions.py,seed.py,seed_data.py,worker.py}  alembic/  tests/  requirements.txt  requirements-dev.txt
+frontend/  src/{pages,components,layouts,lib,config/images.ts}  e2e/  e2e-docs/  vite.config.ts
+docker/    backend.Dockerfile  frontend.Dockerfile  nginx.conf  backend-entrypoint.sh
+docs/      src/ (report sources)  tools/ (build scripts)  data/ (measured results)  diagrams/  screenshots/  exports/
+scripts/   reset-demo.sh  reset-demo.ps1  benchmark.py  check_no_pricing.py  verify_celery.py  verify_connections.py
+docker-compose.yml  .env.example  DEPLOYMENT.md  REQUIREMENTS.md  README.md  .github/workflows/ci.yml
+```
+
+To rebuild the report pack: `backend\.venv\Scripts\python docs\tools\build_docs.py` (requires Node for Mermaid and Chromium PDF output; see `docs/tools`).
+
+## Attributions
+
+Photographs are hot-linked from public sources, rendered with a black-and-white treatment, and replaced by a gradient if they cannot load. Every URL is listed with a source comment in [`frontend/src/config/images.ts`](frontend/src/config/images.ts); all 37 image URLs (36 distinct photographs) returned HTTP 200 when checked on 24-Oct-2026. Photos are provided by their photographers under the [Unsplash License](https://unsplash.com/license) and the [Pexels License](https://www.pexels.com/license/); individual credit is on each photo's page.
+
+* **Pexels** (`images.pexels.com/photos/<id>`): 11321242, 11800909, 1181676, 12310724, 12419503, 12903045, 13339844, 13369323, 13612713, 14094276, 14845309 (Mumbai skyline), 15126949, 160087, 16952108 (India Gate), 265087, 29820147, 31112232, 3183150, 31968829, 669615.
+* **Unsplash** (`images.unsplash.com/<id>`): photo-1432888498266-38ffec3eaf0a, photo-1451187580459-43490279c0fa, photo-1494438639946-1ebd1d20bf85, photo-1512758017271-d7b84c2113f1, photo-1518770660439-4636190af475, photo-1526374965328-7f61d4dc18c5, photo-1526628953301-3e589a6a8b74, photo-1531297484001-80022131f5a1, photo-1535378917042-10a22c95931a, photo-1550751827-4bd374c3f58b, photo-1551288049-bebda4e38f71, photo-1553877522-43269d4ea984, photo-1554224155-6726b3ff858f, photo-1558494949-ef010cbdcc31, photo-1558591710-4b4a1ae0f04d, photo-1639322537228-f710d846310a.
+* Fonts: Inter Variable and Instrument Serif via Fontsource (SIL Open Font License). Diagrams: Mermaid (MIT). Icons: lucide (ISC).

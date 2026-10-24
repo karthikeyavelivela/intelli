@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="40" failures="0" errors="0" time="4.04">
+    <testsuite name="src/test/api.test.ts" timestamp="2026-10-24T14:06:51.939Z" hostname="localhost" tests="7" failures="0" errors="0" skipped="0" time="0.0194396">
+        <testcase classname="src/test/api.test.ts" name="api client &gt; sends cookies and the CSRF header on every call, JSON-encoding bodies" time="0.0059769">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; turns the backend error envelope into an ApiError with code, details and request id" time="0.0032757">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; refreshes the session once on 401 and retries the original request" time="0.0042638">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; signs the user out when the refresh fails" time="0.0009861">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; never retries auth endpoints (login failures surface directly)" time="0.0008447">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; builds query strings without empty values" time="0.0009821">
+        </testcase>
+        <testcase classname="src/test/api.test.ts" name="api client &gt; parses the Ask TARA server-sent-event stream" time="0.0013664">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/test/components.test.tsx" timestamp="2026-10-24T14:06:51.944Z" hostname="localhost" tests="18" failures="0" errors="0" skipped="0" time="0.4493611">
+        <testcase classname="src/test/components.test.tsx" name="ThemeToggle &gt; switches theme, persists the choice and toggles the dark class" time="0.2452961">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="SafeImage &gt; has alt text, lazy loading, B/W treatment and falls back to a gradient on error" time="0.0094395">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="SafeImage &gt; reveals the image once loaded" time="0.0038397">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="image config &gt; every image has a URL, alt text and a source" time="0.004329">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="DataTable &gt; renders rows without a sort prop (regression: no crash when sortKey is undefined)" time="0.0071915">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="DataTable &gt; supports sorting and keyboard row activation" time="0.0691949">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="DataTable &gt; shows the empty state" time="0.0027814">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="Pager &gt; pages forward and disables at the edges" time="0.0732679">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="Pager &gt; renders nothing for a single page" time="0.0013224">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="FormulaDiff &gt; highlights removed tokens on side A and added tokens on side B" time="0.0043189">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="ValidationPanel &gt; shows errors and success summaries" time="0.0079324">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="StatusBadge &gt; humanises status text" time="0.0016384">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="RequireCap (frontend RBAC gate) &gt; renders children when the capability is held" time="0.0068029">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="RequireCap (frontend RBAC gate) &gt; redirects to /403 otherwise" time="0.0032149">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="formatters &gt; formats values by unit" time="0.0011769">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="formatters &gt; compacts amounts into lakh / crore for KPI cards and chart axes" time="0.0004458">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="formatters &gt; shows dates as DD-MMM-YYYY in IST" time="0.0041766">
+        </testcase>
+        <testcase classname="src/test/components.test.tsx" name="formatters &gt; escapes CSV" time="0.000406">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/test/landing.test.tsx" timestamp="2026-10-24T14:06:51.948Z" hostname="localhost" tests="3" failures="0" errors="0" skipped="0" time="0.3382774">
+        <testcase classname="src/test/landing.test.tsx" name="public landing page (academic project) &gt; contains no pricing, plans, billing or sales calls to action" time="0.2059829">
+            <system-err>
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+            </system-err>
+        </testcase>
+        <testcase classname="src/test/landing.test.tsx" name="public landing page (academic project) &gt; shows academic calls to action and the University Project badge + footer note" time="0.0967678">
+        </testcase>
+        <testcase classname="src/test/landing.test.tsx" name="public landing page (academic project) &gt; uses Indian rupee for illustrative figures" time="0.0339783">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/test/ui.test.tsx" timestamp="2026-10-24T14:06:51.948Z" hostname="localhost" tests="12" failures="0" errors="0" skipped="0" time="0.6017708">
+        <testcase classname="src/test/ui.test.tsx" name="form controls &gt; Field links its label to the control and shows errors accessibly" time="0.0888143">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="form controls &gt; Switch toggles with aria-checked and Select/Textarea render" time="0.070537">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="Button &gt; is disabled and busy while loading" time="0.0144764">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="Modal &gt; renders an accessible dialog and closes via the close button" time="0.0969841">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="Tabs &gt; switches panels" time="0.0604267">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="toasts &gt; announces a toast in a live region and can be dismissed" time="0.1253497">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; PageHeader, Card, Progress, Skeleton, Logo" time="0.0148375">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; Progress clamps out-of-range values" time="0.0035714">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; ErrorState shows the message, request id and a retry action" time="0.0277311">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; EmptyState renders its image with alt text and an action" time="0.0084856">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; TableSkeleton renders placeholder rows" time="0.0045548">
+        </testcase>
+        <testcase classname="src/test/ui.test.tsx" name="shared page pieces &gt; AnimatedNumber shows a dash for missing values and formats INR when it reaches the value" time="0.0833496">
+        </testcase>
+    </testsuite>
+</testsuites>

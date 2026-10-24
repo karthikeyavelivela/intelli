@@ -1,0 +1,434 @@
+[
+ {
+  "theme": "light",
+  "file": "01_landing.png",
+  "title": "Landing page",
+  "path": "/"
+ },
+ {
+  "theme": "light",
+  "file": "02_about.png",
+  "title": "About / product tour",
+  "path": "/about"
+ },
+ {
+  "theme": "light",
+  "file": "03_login.png",
+  "title": "Login with demo accounts panel",
+  "path": "/login"
+ },
+ {
+  "theme": "light",
+  "file": "04_register.png",
+  "title": "Register",
+  "path": "/register"
+ },
+ {
+  "theme": "light",
+  "file": "05_forgot_password.png",
+  "title": "Forgot password",
+  "path": "/forgot-password"
+ },
+ {
+  "theme": "light",
+  "file": "06_reset_password.png",
+  "title": "Reset password",
+  "path": "/reset-password"
+ },
+ {
+  "theme": "light",
+  "file": "07_forbidden_403.png",
+  "title": "403 Forbidden",
+  "path": "/403"
+ },
+ {
+  "theme": "light",
+  "file": "08_not_found_404.png",
+  "title": "404 Not found",
+  "path": "/no-such-page"
+ },
+ {
+  "theme": "light",
+  "file": "20_dashboard.png",
+  "title": "Main dashboard",
+  "path": "/app/dashboard"
+ },
+ {
+  "theme": "light",
+  "file": "21_metrics_catalog.png",
+  "title": "Metrics catalog",
+  "path": "/app/metrics"
+ },
+ {
+  "theme": "light",
+  "file": "22_metric_detail.png",
+  "title": "Metric detail (Revenue)",
+  "path": "/app/metrics/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "light",
+  "file": "23_datasets_catalog.png",
+  "title": "Datasets catalog",
+  "path": "/app/datasets"
+ },
+ {
+  "theme": "light",
+  "file": "24_dataset_detail.png",
+  "title": "Dataset detail (preview)",
+  "path": "/app/datasets/a8a3fa05f43d4e458fdc0f2f922adced"
+ },
+ {
+  "theme": "light",
+  "file": "25_connections.png",
+  "title": "Database connections",
+  "path": "/app/connections"
+ },
+ {
+  "theme": "light",
+  "file": "26_conflict_center.png",
+  "title": "Conflict detection center",
+  "path": "/app/conflicts"
+ },
+ {
+  "theme": "light",
+  "file": "27_conflict_detail.png",
+  "title": "Conflict detail (side-by-side)",
+  "path": "/app/conflicts/24ddd985a8da4aae9c4a7e5d7f0002d1"
+ },
+ {
+  "theme": "light",
+  "file": "28_version_control.png",
+  "title": "Version control (Revenue history)",
+  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "light",
+  "file": "29_dashboards_list.png",
+  "title": "Saved dashboards and templates",
+  "path": "/app/dashboards"
+ },
+ {
+  "theme": "light",
+  "file": "30_dashboard_builder.png",
+  "title": "Dashboard builder (Sales Overview)",
+  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+ },
+ {
+  "theme": "light",
+  "file": "31_evaluation.png",
+  "title": "Performance evaluation",
+  "path": "/app/evaluation"
+ },
+ {
+  "theme": "light",
+  "file": "32_reports.png",
+  "title": "Reports and exports",
+  "path": "/app/reports"
+ },
+ {
+  "theme": "light",
+  "file": "33_profile.png",
+  "title": "User profile",
+  "path": "/app/profile"
+ },
+ {
+  "theme": "light",
+  "file": "34_admin_users.png",
+  "title": "Workspace and user management",
+  "path": "/app/admin/users"
+ },
+ {
+  "theme": "light",
+  "file": "35_audit_log.png",
+  "title": "Audit log",
+  "path": "/app/admin/audit"
+ },
+ {
+  "theme": "light",
+  "file": "36_settings.png",
+  "title": "Application settings",
+  "path": "/app/settings"
+ },
+ {
+  "theme": "light",
+  "file": "37_activity.png",
+  "title": "Notifications and activity",
+  "path": "/app/notifications"
+ },
+ {
+  "theme": "light",
+  "file": "38_tara_metric_generator.png",
+  "title": "TARA metric generator (offline deterministic mode, editable suggestion)",
+  "path": "/app/generator"
+ },
+ {
+  "theme": "light",
+  "file": "39_formula_lab.png",
+  "title": "Formula Lab: validate and execute (Revenue less refunds by state)",
+  "path": "/app/lab"
+ },
+ {
+  "theme": "light",
+  "file": "40_formula_lab_rejected.png",
+  "title": "Formula Lab rejecting an injection attempt",
+  "path": "/app/lab"
+ },
+ {
+  "theme": "light",
+  "file": "41_ask_tara_empty.png",
+  "title": "Ask TARA: suggested Indian questions",
+  "path": "/app/ask"
+ },
+ {
+  "theme": "light",
+  "file": "42_ask_tara_conversation.png",
+  "title": "Ask TARA: answers with chart, table, sources and applied filters",
+  "path": "/app/ask"
+ },
+ {
+  "theme": "light",
+  "file": "43_dashboard_builder_edit.png",
+  "title": "Dashboard builder in edit mode (drag handles)",
+  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+ },
+ {
+  "theme": "light",
+  "file": "44_version_compare.png",
+  "title": "Version compare (diff view)",
+  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "dark",
+  "file": "01_landing.png",
+  "title": "Landing page",
+  "path": "/"
+ },
+ {
+  "theme": "dark",
+  "file": "02_about.png",
+  "title": "About / product tour",
+  "path": "/about"
+ },
+ {
+  "theme": "dark",
+  "file": "03_login.png",
+  "title": "Login with demo accounts panel",
+  "path": "/login"
+ },
+ {
+  "theme": "dark",
+  "file": "04_register.png",
+  "title": "Register",
+  "path": "/register"
+ },
+ {
+  "theme": "dark",
+  "file": "05_forgot_password.png",
+  "title": "Forgot password",
+  "path": "/forgot-password"
+ },
+ {
+  "theme": "dark",
+  "file": "06_reset_password.png",
+  "title": "Reset password",
+  "path": "/reset-password"
+ },
+ {
+  "theme": "dark",
+  "file": "07_forbidden_403.png",
+  "title": "403 Forbidden",
+  "path": "/403"
+ },
+ {
+  "theme": "dark",
+  "file": "08_not_found_404.png",
+  "title": "404 Not found",
+  "path": "/no-such-page"
+ },
+ {
+  "theme": "dark",
+  "file": "20_dashboard.png",
+  "title": "Main dashboard",
+  "path": "/app/dashboard"
+ },
+ {
+  "theme": "dark",
+  "file": "21_metrics_catalog.png",
+  "title": "Metrics catalog",
+  "path": "/app/metrics"
+ },
+ {
+  "theme": "dark",
+  "file": "22_metric_detail.png",
+  "title": "Metric detail (Revenue)",
+  "path": "/app/metrics/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "dark",
+  "file": "23_datasets_catalog.png",
+  "title": "Datasets catalog",
+  "path": "/app/datasets"
+ },
+ {
+  "theme": "dark",
+  "file": "24_dataset_detail.png",
+  "title": "Dataset detail (preview)",
+  "path": "/app/datasets/a8a3fa05f43d4e458fdc0f2f922adced"
+ },
+ {
+  "theme": "dark",
+  "file": "25_connections.png",
+  "title": "Database connections",
+  "path": "/app/connections"
+ },
+ {
+  "theme": "dark",
+  "file": "26_conflict_center.png",
+  "title": "Conflict detection center",
+  "path": "/app/conflicts"
+ },
+ {
+  "theme": "dark",
+  "file": "27_conflict_detail.png",
+  "title": "Conflict detail (side-by-side)",
+  "path": "/app/conflicts/24ddd985a8da4aae9c4a7e5d7f0002d1"
+ },
+ {
+  "theme": "dark",
+  "file": "28_version_control.png",
+  "title": "Version control (Revenue history)",
+  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "dark",
+  "file": "29_dashboards_list.png",
+  "title": "Saved dashboards and templates",
+  "path": "/app/dashboards"
+ },
+ {
+  "theme": "dark",
+  "file": "30_dashboard_builder.png",
+  "title": "Dashboard builder (Sales Overview)",
+  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+ },
+ {
+  "theme": "dark",
+  "file": "31_evaluation.png",
+  "title": "Performance evaluation",
+  "path": "/app/evaluation"
+ },
+ {
+  "theme": "dark",
+  "file": "32_reports.png",
+  "title": "Reports and exports",
+  "path": "/app/reports"
+ },
+ {
+  "theme": "dark",
+  "file": "33_profile.png",
+  "title": "User profile",
+  "path": "/app/profile"
+ },
+ {
+  "theme": "dark",
+  "file": "34_admin_users.png",
+  "title": "Workspace and user management",
+  "path": "/app/admin/users"
+ },
+ {
+  "theme": "dark",
+  "file": "35_audit_log.png",
+  "title": "Audit log",
+  "path": "/app/admin/audit"
+ },
+ {
+  "theme": "dark",
+  "file": "36_settings.png",
+  "title": "Application settings",
+  "path": "/app/settings"
+ },
+ {
+  "theme": "dark",
+  "file": "37_activity.png",
+  "title": "Notifications and activity",
+  "path": "/app/notifications"
+ },
+ {
+  "theme": "dark",
+  "file": "38_tara_metric_generator.png",
+  "title": "TARA metric generator (offline deterministic mode, editable suggestion)",
+  "path": "/app/generator"
+ },
+ {
+  "theme": "dark",
+  "file": "39_formula_lab.png",
+  "title": "Formula Lab: validate and execute (Revenue less refunds by state)",
+  "path": "/app/lab"
+ },
+ {
+  "theme": "dark",
+  "file": "40_formula_lab_rejected.png",
+  "title": "Formula Lab rejecting an injection attempt",
+  "path": "/app/lab"
+ },
+ {
+  "theme": "dark",
+  "file": "41_ask_tara_empty.png",
+  "title": "Ask TARA: suggested Indian questions",
+  "path": "/app/ask"
+ },
+ {
+  "theme": "dark",
+  "file": "42_ask_tara_conversation.png",
+  "title": "Ask TARA: answers with chart, table, sources and applied filters",
+  "path": "/app/ask"
+ },
+ {
+  "theme": "dark",
+  "file": "43_dashboard_builder_edit.png",
+  "title": "Dashboard builder in edit mode (drag handles)",
+  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+ },
+ {
+  "theme": "dark",
+  "file": "44_version_compare.png",
+  "title": "Version compare (diff view)",
+  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+ },
+ {
+  "theme": "light",
+  "file": "90_mobile_landing.png",
+  "title": "Mobile: landing page",
+  "path": "/"
+ },
+ {
+  "theme": "light",
+  "file": "91_mobile_dashboard.png",
+  "title": "Mobile: dashboard",
+  "path": "/app/dashboard"
+ },
+ {
+  "theme": "light",
+  "file": "92_mobile_ask_tara.png",
+  "title": "Mobile: Ask TARA",
+  "path": "/app/ask"
+ },
+ {
+  "theme": "dark",
+  "file": "90_mobile_landing.png",
+  "title": "Mobile: landing page",
+  "path": "/"
+ },
+ {
+  "theme": "dark",
+  "file": "91_mobile_dashboard.png",
+  "title": "Mobile: dashboard",
+  "path": "/app/dashboard"
+ },
+ {
+  "theme": "dark",
+  "file": "92_mobile_ask_tara.png",
+  "title": "Mobile: Ask TARA",
+  "path": "/app/ask"
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "kind": "postgres",
+  "server_version": "18.2",
+  "tables_listed": 22,
+  "rows_imported": 30000,
+  "import_job_ms": 335,
+  "password_encrypted_at_rest": true,
+  "write_attempt_rejected_by_readonly_session": "cannot execute CREATE TABLE in a read-only transaction",
+  "groups_returned": 5,
+  "wall_ms": 581
+ },
+ {
+  "kind": "mysql",
+  "server_version": "8.0.40",
+  "tables_listed": 1,
+  "rows_imported": 30000,
+  "import_job_ms": 299,
+  "password_encrypted_at_rest": true,
+  "write_attempt_rejected_by_readonly_session": "(1792, 'Cannot execute statement in a READ ONLY transaction.')",
+  "groups_returned": 5,
+  "wall_ms": 515
+ }
+]

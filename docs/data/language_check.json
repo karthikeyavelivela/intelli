@@ -1,0 +1,18 @@
+{
+ "unexplained": [],
+ "allow_listed": 205,
+ "allow_list_reasons": [
+  "'plan' in the sense of a TARA query plan / resolution plan",
+  "database migration command (Alembic 'upgrade'), not a commercial upgrade",
+  "documentation/tests that state or verify the ABSENCE of pricing",
+  "negative assertions in tests",
+  "product unit price attribute in the synthetic retail dataset (data, not product pricing)"
+ ],
+ "by_reason": {
+  "database migration command (Alembic 'upgrade'), not a commercial upgrade": 23,
+  "negative assertions in tests": 7,
+  "documentation/tests that state or verify the ABSENCE of pricing": 10,
+  "product unit price attribute in the synthetic retail dataset (data, not product pricing)": 9,
+  "'plan' in the sense of a TARA query plan / resolution plan": 156
+ }
+}

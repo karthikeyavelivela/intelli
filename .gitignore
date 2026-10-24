@@ -1,0 +1,60 @@
+# --- secrets and local configuration -------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Python --------------------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+backend/pip.log
+
+# --- runtime data (created by the application; recreated by `python -m app.seed`) -----
+backend/storage/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+
+# --- Node / front end ----------------------------------------------------------------
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+frontend/shots/
+frontend/debug.png
+frontend/pw-install.log
+
+# --- test artefacts ------------------------------------------------------------------
+playwright-report/
+test-results/
+blob-report/
+
+# --- documentation build scratch (the finished exports in docs/exports ARE tracked) ---
+docs/_build/
+docs/data/frontend_coverage/lcov-report/
+docs/data/screens_run.log
+docs/data/_*.log
+
+# --- editors, OS and AI-assistant tooling --------------------------------------------
+.claude/
+.code-review-graph/
+CLAUDE.md
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

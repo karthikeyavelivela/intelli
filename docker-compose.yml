@@ -1,0 +1,85 @@
+# IntelliMetrics AI - local / single-host stack.   docker compose up --build
+name: intellimetrics
+
+x-backend-env: &backend-env
+  ENV: ${ENV:-development}
+  DATABASE_URL: postgresql://${POSTGRES_USER:-intellimetrics}:${POSTGRES_PASSWORD:-intellimetrics}@postgres:5432/${POSTGRES_DB:-intellimetrics}
+  REDIS_URL: redis://redis:6379/0
+  USE_CELERY: "true"
+  SECRET_KEY: ${SECRET_KEY:-dev-secret-change-me-please-use-a-long-random-string}
+  ENCRYPTION_KEY: ${ENCRYPTION_KEY:-}
+  COOKIE_SECURE: ${COOKIE_SECURE:-false}
+  CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:5173}
+  FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+  AI_PROVIDER: ${AI_PROVIDER:-none}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+  GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+  GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+  QUERY_TIMEOUT_SECONDS: ${QUERY_TIMEOUT_SECONDS:-20}
+  QUERY_ROW_LIMIT: ${QUERY_ROW_LIMIT:-10000}
+  MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-500}
+  AUTO_SEED: ${AUTO_SEED:-true}
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-intellimetrics}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-intellimetrics}
+      POSTGRES_DB: ${POSTGRES_DB:-intellimetrics}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-intellimetrics}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redisdata:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: { context: ., dockerfile: docker/backend.Dockerfile }
+    restart: unless-stopped
+    environment: *backend-env
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    volumes: [datasets:/data/datasets]
+    ports: ["${BACKEND_PORT:-8000}:8000"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  worker:
+    build: { context: ., dockerfile: docker/backend.Dockerfile }
+    restart: unless-stopped
+    command: ["worker"]
+    environment: *backend-env
+    depends_on:
+      backend: { condition: service_healthy }
+    volumes: [datasets:/data/datasets]
+
+  frontend:
+    build: { context: ., dockerfile: docker/frontend.Dockerfile }
+    restart: unless-stopped
+    depends_on:
+      backend: { condition: service_healthy }
+    ports: ["${FRONTEND_PORT:-3000}:80"]
+
+volumes:
+  pgdata:
+  redisdata:
+  datasets:

@@ -1,0 +1,27 @@
+flowchart TB
+  CLIENT["User browser"]
+  subgraph HOST["Docker host (laptop or VPS) - docker compose"]
+    subgraph FEC["frontend container - nginx:1.27-alpine"]
+      STATIC["/usr/share/nginx/html (Vite dist)"]
+      PROXY["proxy_pass /api to backend:8000"]
+    end
+    subgraph BEC["backend container - python:3.11-slim"]
+      UV["uvicorn app.main:app<br/>alembic upgrade head on start"]
+    end
+    subgraph WKC["worker container - same image"]
+      CEL["celery worker (ingest_dataset)"]
+    end
+    PGC[("postgres:16-alpine<br/>volume pgdata")]
+    RDC[("redis:7-alpine<br/>volume redisdata")]
+    VOL[("volume datasets<br/>raw uploads + Parquet")]
+  end
+  TLS["Host Nginx + Let's Encrypt (VPS option)"]
+  CLIENT -->|"HTTP :3000 (local)"| FEC
+  CLIENT -->|HTTPS| TLS --> FEC
+  PROXY --> UV
+  UV --> PGC
+  UV --> RDC
+  UV --- VOL
+  CEL --> RDC
+  CEL --> PGC
+  CEL --- VOL

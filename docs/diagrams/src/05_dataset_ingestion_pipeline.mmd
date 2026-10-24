@@ -1,0 +1,18 @@
+flowchart TB
+  UP["User uploads file<br/>CSV / TSV / Excel / JSON / Parquet"] --> CHK["Extension whitelist,<br/>size limit, streamed to disk<br/>(1 MiB chunks), magic-byte check"]
+  CHK -->|reject| ERR1["HTTP 400 / 413 error envelope"]
+  CHK --> REC["Create dataset (pending)<br/>+ ingestion job (queued)"]
+  REC --> Q{"USE_CELERY?"}
+  Q -->|"yes"| CQ["Celery task via Redis"]
+  Q -->|"no (local dev)"| TH["Background thread"]
+  CQ --> P1
+  TH --> P1
+  subgraph JOB["Background job (never inside an HTTP request)"]
+    P1["10 % validating"] --> P2["30 % converting<br/>DuckDB COPY to Parquet (ZSTD)<br/>column names normalised"]
+    P2 --> P3["65 % schema detection +<br/>profiling: nulls, distincts,<br/>min / max / mean, top values,<br/>duplicate rows"]
+    P3 --> P4["100 % ready"]
+  end
+  P2 -->|error| FAIL["status failed + error report"]
+  P4 --> CAT["Dataset catalog + notification"]
+  CAT --> UI["UI polls /datasets/id/status<br/>progress bar until ready"]
+  DBI["PostgreSQL / MySQL connection<br/>(read-only session, Fernet-encrypted credentials)"] --> IMP["Chunked import, 50 000 rows per fetch"] --> P2

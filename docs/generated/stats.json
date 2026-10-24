@@ -1,0 +1,24 @@
+{
+ "endpoints": 96,
+ "tables": 20,
+ "routers": 16,
+ "capabilities": 19,
+ "roles": 4,
+ "backend_py": [
+  46,
+  7115
+ ],
+ "backend_tests": [
+  7,
+  1072
+ ],
+ "frontend_src": [
+  54,
+  4707
+ ],
+ "e2e": [
+  2,
+  292
+ ],
+ "pages": 25
+}

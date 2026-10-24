@@ -1,0 +1,187 @@
+{
+ "base": "http://127.0.0.1:8000",
+ "passed": 36,
+ "total": 36,
+ "results": [
+  {
+   "check": "login admin",
+   "ok": true,
+   "detail": "HTTP 200, role=admin, workspace=Bharat Retail Pvt Ltd"
+  },
+  {
+   "check": "login analyst",
+   "ok": true,
+   "detail": "HTTP 200, role=data_analyst, workspace=Bharat Retail Pvt Ltd"
+  },
+  {
+   "check": "login business",
+   "ok": true,
+   "detail": "HTTP 200, role=business_user, workspace=Bharat Retail Pvt Ltd"
+  },
+  {
+   "check": "login reviewer",
+   "ok": true,
+   "detail": "HTTP 200, role=reviewer, workspace=Bharat Retail Pvt Ltd"
+  },
+  {
+   "check": "login sagar_admin",
+   "ok": true,
+   "detail": "HTTP 200, role=admin, workspace=Sagar Foods & Beverages Ltd"
+  },
+  {
+   "check": "login sagar_analyst",
+   "ok": true,
+   "detail": "HTTP 200, role=data_analyst, workspace=Sagar Foods & Beverages Ltd"
+  },
+  {
+   "check": "workspaces are the two Indian companies",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "business user cannot open Formula Lab execution (403)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "business user cannot run conflict detection (403)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "business user cannot read the audit log (403)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "conflict detection runs",
+   "ok": true,
+   "detail": "{'created': 4, 'updated': 0, 'unchanged': 0, 'total_open': 4, 'tara': {'enabled': False, 'note': 'TA"
+  },
+  {
+   "check": "Finance Revenue conflict found",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "GST-inclusive Marketing Revenue conflict found",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "conflict assign, review, approve, resolve",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "renamed metric is version 2",
+   "ok": true,
+   "detail": "[2]"
+  },
+  {
+   "check": "Formula Lab runs Revenue minus refunds by state",
+   "ok": true,
+   "detail": "HTTP 200"
+  },
+  {
+   "check": "injection attempt rejected (422)",
+   "ok": true,
+   "detail": "HTTP 422"
+  },
+  {
+   "check": "users table intact after the attempt",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "Indian suggested questions offered (first five are the headline questions)",
+   "ok": true,
+   "detail": "8"
+  },
+  {
+   "check": "ask: What was net revenue by month in the last quarter of this fi",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=3"
+  },
+  {
+   "check": "ask: Which 5 states had the highest sales this year?",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=5"
+  },
+  {
+   "check": "ask: Compare Diwali-season sales with the previous quarter",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=2"
+  },
+  {
+   "check": "ask: What is the UPI vs COD split by region?",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=10"
+  },
+  {
+   "check": "ask: Top 10 customers by revenue",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=10"
+  },
+  {
+   "check": "ask: How many orders did we have last month?",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=1"
+  },
+  {
+   "check": "ask: What were refunds in the last quarter?",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=1"
+  },
+  {
+   "check": "ask: What was the gross margin % in FY 2025-26?",
+   "ok": true,
+   "detail": "HTTP 200, kind=answer, rows=1"
+  },
+  {
+   "check": "no dollar amounts in any answer",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "lakh/crore grouping present (e.g. 12,34,567 or Cr/L)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "off-topic question is refused, not answered",
+   "ok": true,
+   "detail": "{\"conversation_id\": \"6b9c9491aac0469999a9b608733a5e53\", \"plan\": {\"supported\": false, \"metric_key\": n"
+  },
+  {
+   "check": "Sales Overview dashboard exists",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "all dashboard widgets load",
+   "ok": true,
+   "detail": "8 widgets"
+  },
+  {
+   "check": "audit log records the actions",
+   "ok": true,
+   "detail": "76"
+  },
+  {
+   "check": "second workspace sees only its own datasets",
+   "ok": true,
+   "detail": "['distributor_dispatches']"
+  },
+  {
+   "check": "second workspace sees none of Bharat Retail's metrics",
+   "ok": true,
+   "detail": "3 metrics"
+  },
+  {
+   "check": "cross-workspace dataset access returns 404",
+   "ok": true,
+   "detail": ""
+  }
+ ]
+}
