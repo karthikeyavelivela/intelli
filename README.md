@@ -2,7 +2,7 @@
 
 **A governed semantic layer with TARA, an AI assistant for trusted business metrics.**
 
-> **University project.** IntelliMetrics AI is an academic capstone by **Devi Priya, Priyanka, Akshay and Bhaskar**, guided by **Dr. Asesh Kumar Tripathy**, KL University, academic year 2026-27. It is not a commercial product. All business data in the demonstration is **synthetic**.
+> **University project.** IntelliMetrics AI is an academic capstone by **Devi Priya, Priyanka, Akshay and Bhaskar**, KL University, academic year 2026-27. It is not a commercial product. All business data in the demonstration is **synthetic**.
 
 Companies often use one word for several calculations: Sales counts goods sold excluding GST, Finance subtracts refunds, Marketing quotes the invoice including GST, and all three call it *Revenue*. IntelliMetrics AI keeps **one governed definition per metric**, detects conflicting definitions automatically, stores every change as an immutable version, and lets anyone ask questions in plain English. TARA, the assistant, **never produces a number itself**: it builds a plan that is checked against approved metrics and executed by a restricted, parameterised formula engine on the real data.
 
@@ -40,20 +40,45 @@ Also: [`docs/diagrams`](docs/diagrams) (Mermaid sources, PNG and SVG), [`docs/sc
 | Evaluation | Measures processing time, query latency, validation pass rate, conflict-detection precision and recall |
 | Security | Four roles, workspace isolation, Argon2 passwords, httpOnly tokens, CSRF header, rate limiting, audit log |
 
-## Quick start (Windows, without Docker: the tested route)
+## How to run (step by step)
 
-Back end, in PowerShell:
+Two ways to run it. **Option A needs no Docker and is the tested one. Start there.**
+
+### Before you start
+
+Install these once:
+
+| Tool | Version | Check with |
+|---|---|---|
+| Python | 3.11 | `python --version` |
+| Node.js (includes npm) | 22 or newer | `node --version` |
+| Git | any | `git --version` |
+
+Nothing else is needed: no database server, no Redis, no paid account, no AI key.
+
+### Option A: run on your own computer (no Docker)
+
+**Step 1. Get the code**
+
+```bash
+git clone https://github.com/karthikeyavelivela/intelli.git
+cd intelli
+```
+
+**Step 2. Start the back end** (open a terminal in the project folder)
 
 ```powershell
 cd backend
 python -m venv .venv
-.venv\Scripts\activate
+.venv\Scripts\activate            # Mac/Linux: source .venv/bin/activate
 pip install -r requirements-dev.txt
-python -m app.seed
+python -m app.seed                # creates the database and the demo data (about 3 seconds)
 uvicorn app.main:app --reload --port 8000
 ```
 
-Front end, in a second window:
+Leave this terminal open. Check it works: open <http://localhost:8000/health>. You should see `"status":"ok"`. API documentation is at <http://localhost:8000/docs>.
+
+**Step 3. Start the front end** (open a second terminal in the project folder)
 
 ```powershell
 cd frontend
@@ -61,11 +86,70 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:5173>. API documentation: <http://localhost:8000/docs>. Reset the demonstration with `scripts\reset-demo.ps1` (or `./scripts/reset-demo.sh`) after stopping the back end.
+**Step 4. Open the application**: <http://localhost:5173>. Click a button in the *Demo accounts* box on the login page (for example **Reviewer**) and sign in. The accounts are listed below.
 
-Docker Compose files are included (`docker compose up --build`, then <http://localhost:3000>) but **have not been run**: Docker is not installed on the development machine. See the [Deployment Guide](docs/06_Deployment_Guide.md) for what was and was not verified.
+**Step 5. Try it** (about 5 minutes)
 
-Without an AI key TARA runs in a clearly labelled **offline deterministic mode**. To use a live model set `AI_PROVIDER=openai` and `OPENAI_API_KEY` (or `gemini` and `GEMINI_API_KEY`) in the back-end environment only.
+1. Sign in as **Reviewer**, open *Conflict detection*, click **Run conflict detection**, and open a Revenue conflict.
+2. Sign in as **Business User**, open *Ask TARA*, and click a suggested question such as *Compare Diwali-season sales with the previous quarter*.
+3. Sign in as **Analyst**, open *Formula Lab*, and run `[Revenue] - SUM(refund_amount)`.
+
+To start again with fresh demo data: stop the back end (Ctrl+C), run `scripts\reset-demo.ps1` (Mac/Linux: `./scripts/reset-demo.sh`), then start it again.
+
+### Settings and AI keys (the `.env` file)
+
+The application works with **no settings at all**. Settings are only needed to turn on optional features. To change them:
+
+```bash
+cp .env.example .env          # Windows: copy .env.example .env
+```
+
+Then edit `.env`. The back end reads it automatically from the project folder (or from `backend/`). **Never commit `.env`**; it is already in `.gitignore`.
+
+| What you want | Setting in `.env` |
+|---|---|
+| Use a real AI model (OpenAI) | `AI_PROVIDER=openai` and `OPENAI_API_KEY=your-key` |
+| Use a real AI model (Gemini) | `AI_PROVIDER=gemini` and `GEMINI_API_KEY=your-key` |
+| No AI key (default) | `AI_PROVIDER=none`. TARA still works in a clearly labelled *offline mode* |
+| Safer login secret (do this for any shared server) | `SECRET_KEY=` a long random text of 32 or more characters |
+| Use PostgreSQL instead of the built-in SQLite file | `DATABASE_URL=postgresql://user:password@localhost:5432/dbname` |
+| Process uploads with Celery and Redis | `USE_CELERY=true` and `REDIS_URL=redis://localhost:6379/0` |
+| Password-reset links in local use | `FRONTEND_URL=http://localhost:5173` |
+
+AI keys stay on the server. They are never sent to the browser. After changing `.env`, stop and start the back end. To make a good `SECRET_KEY`: `python -c "import secrets; print(secrets.token_urlsafe(48))"`. The full list of settings is in [DEPLOYMENT.md](DEPLOYMENT.md).
+
+### Option B: Docker Compose (database, Redis, worker and web server together)
+
+Install Docker Desktop first, then:
+
+```bash
+cp .env.example .env          # edit SECRET_KEY and POSTGRES_PASSWORD
+docker compose up --build
+```
+
+Open <http://localhost:3000>. The first start creates the database and the demo data. Stop with Ctrl+C, then `docker compose down`. **This option has not been run by the authors** because Docker was not installed on the development machine; see the [Deployment Guide](docs/06_Deployment_Guide.md) for what was and was not verified.
+
+### Run the tests
+
+```bash
+cd backend  && python -m pytest tests -q                 # back end
+cd frontend && npx vitest run                            # front end unit tests
+cd frontend && npx playwright install chromium && npx playwright test    # browser tests
+```
+
+### If something goes wrong
+
+| Problem | Fix |
+|---|---|
+| `python` or `node` not found | Install it, then open a new terminal |
+| Page is blank or says "Failed to fetch" | The back end is not running. Start Step 2 again |
+| `database is locked` when resetting (Windows) | Stop the back end first, then reset |
+| Port 8000 or 5173 already in use | Close the other program, or use another port (`--port 8001`) |
+| Photos are grey boxes | You are offline. Harmless; the app still works |
+| TARA says "offline mode" | Normal without an AI key. Add one in `.env` to change it |
+| Login fails for a demo account | Reset the demo data (see Step 5) |
+
+More: [User Guide](docs/05_User_Guide_and_How_To_Run.md) (with screenshots of every page) and [Deployment Guide](docs/06_Deployment_Guide.md) (server, HTTPS and free hosting).
 
 ## Demonstration accounts
 
@@ -90,15 +174,7 @@ The permission matrix is in the [System Architecture](docs/03_System_Architectur
 * What is the UPI vs COD split by region?
 * Top 10 customers by revenue
 
-## Tests
-
-```powershell
-cd backend;  python -m pytest tests -q        # back end (SQLite); also run against PostgreSQL with TEST_DATABASE_URL
-cd frontend; npx vitest run                   # component and library tests
-cd frontend; npx playwright install chromium; npx playwright test   # browser end-to-end tests
-```
-
-The latest measured results (counts, coverage, benchmarks) are in the [Testing Report](docs/04_Testing_Report.md).
+The latest measured test results (counts, coverage, benchmarks) are in the [Testing Report](docs/04_Testing_Report.md).
 
 ## Limitations, stated plainly
 

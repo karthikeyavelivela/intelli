@@ -9,10 +9,9 @@
 | **Project title** | IntelliMetrics AI: A Governed Semantic Layer with TARA, an AI Assistant for Trusted Business Metrics |
 | **Document** | Viva Preparation |
 | **Team members** | Devi Priya, Priyanka, Akshay and Bhaskar |
-| **Guide** | Dr. Asesh Kumar Tripathy |
 | **Institution** | KL University |
 | **Academic year** | 2026-27 |
-| **Date** | 24-Oct-2026 (IST) |
+| **Date** | 26-Oct-2026 (IST) |
 | **Status** | University project: academic capstone with synthetic demonstration data |
 
 ```{=openxml}
@@ -71,7 +70,7 @@ It contains two spoken pitches, a one-page fact sheet, forty questions an examin
 | Item | Fact |
 |---|---|
 | Project | IntelliMetrics AI; assistant name TARA |
-| Team / guide | Devi Priya, Priyanka, Akshay and Bhaskar / Dr. Asesh Kumar Tripathy, KL University, AY 2026-27 |
+| Team | Devi Priya, Priyanka, Akshay and Bhaskar, KL University, AY 2026-27 |
 | Nature | Academic capstone with synthetic data; not a commercial product |
 | Size | 46 Python files (7,115 lines), 54 TypeScript files (4,707 lines), 96 endpoints, 20 tables, 25 page components |
 | Tests | 325 automated: pytest 136 (also 136 on PostgreSQL 18), Vitest 40, Playwright 13; back-end coverage 82.8 % |

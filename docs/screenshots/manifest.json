@@ -63,7 +63,7 @@
   "theme": "light",
   "file": "22_metric_detail.png",
   "title": "Metric detail (Revenue)",
-  "path": "/app/metrics/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/metrics/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "light",
@@ -75,7 +75,7 @@
   "theme": "light",
   "file": "24_dataset_detail.png",
   "title": "Dataset detail (preview)",
-  "path": "/app/datasets/a8a3fa05f43d4e458fdc0f2f922adced"
+  "path": "/app/datasets/9f0cc5b33810476ca64591d13d4459e0"
  },
  {
   "theme": "light",
@@ -93,13 +93,13 @@
   "theme": "light",
   "file": "27_conflict_detail.png",
   "title": "Conflict detail (side-by-side)",
-  "path": "/app/conflicts/24ddd985a8da4aae9c4a7e5d7f0002d1"
+  "path": "/app/conflicts/ab8533ba2f80448581ef347b6976261f"
  },
  {
   "theme": "light",
   "file": "28_version_control.png",
   "title": "Version control (Revenue history)",
-  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/versions/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "light",
@@ -111,7 +111,7 @@
   "theme": "light",
   "file": "30_dashboard_builder.png",
   "title": "Dashboard builder (Sales Overview)",
-  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+  "path": "/app/dashboards/d9539b99eef44620bc0f2836954178c0"
  },
  {
   "theme": "light",
@@ -189,13 +189,13 @@
   "theme": "light",
   "file": "43_dashboard_builder_edit.png",
   "title": "Dashboard builder in edit mode (drag handles)",
-  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+  "path": "/app/dashboards/d9539b99eef44620bc0f2836954178c0"
  },
  {
   "theme": "light",
   "file": "44_version_compare.png",
   "title": "Version compare (diff view)",
-  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/versions/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "dark",
@@ -261,7 +261,7 @@
   "theme": "dark",
   "file": "22_metric_detail.png",
   "title": "Metric detail (Revenue)",
-  "path": "/app/metrics/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/metrics/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "dark",
@@ -273,7 +273,7 @@
   "theme": "dark",
   "file": "24_dataset_detail.png",
   "title": "Dataset detail (preview)",
-  "path": "/app/datasets/a8a3fa05f43d4e458fdc0f2f922adced"
+  "path": "/app/datasets/9f0cc5b33810476ca64591d13d4459e0"
  },
  {
   "theme": "dark",
@@ -291,13 +291,13 @@
   "theme": "dark",
   "file": "27_conflict_detail.png",
   "title": "Conflict detail (side-by-side)",
-  "path": "/app/conflicts/24ddd985a8da4aae9c4a7e5d7f0002d1"
+  "path": "/app/conflicts/ab8533ba2f80448581ef347b6976261f"
  },
  {
   "theme": "dark",
   "file": "28_version_control.png",
   "title": "Version control (Revenue history)",
-  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/versions/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "dark",
@@ -309,7 +309,7 @@
   "theme": "dark",
   "file": "30_dashboard_builder.png",
   "title": "Dashboard builder (Sales Overview)",
-  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+  "path": "/app/dashboards/d9539b99eef44620bc0f2836954178c0"
  },
  {
   "theme": "dark",
@@ -387,13 +387,13 @@
   "theme": "dark",
   "file": "43_dashboard_builder_edit.png",
   "title": "Dashboard builder in edit mode (drag handles)",
-  "path": "/app/dashboards/988f1d907b1e40cea546dd023318d1ea"
+  "path": "/app/dashboards/d9539b99eef44620bc0f2836954178c0"
  },
  {
   "theme": "dark",
   "file": "44_version_compare.png",
   "title": "Version compare (diff view)",
-  "path": "/app/versions/8a61e9bc78d645c4be3b111340e76458"
+  "path": "/app/versions/f30433a5e3d84d96a6c55420e7c5a251"
  },
  {
   "theme": "light",

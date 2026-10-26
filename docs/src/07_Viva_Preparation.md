@@ -24,7 +24,7 @@ It contains two spoken pitches, a one-page fact sheet, forty questions an examin
 | Item | Fact |
 |---|---|
 | Project | IntelliMetrics AI; assistant name TARA |
-| Team / guide | Devi Priya, Priyanka, Akshay and Bhaskar / Dr. Asesh Kumar Tripathy, KL University, AY 2026-27 |
+| Team | Devi Priya, Priyanka, Akshay and Bhaskar, KL University, AY 2026-27 |
 | Nature | Academic capstone with synthetic data; not a commercial product |
 | Size | {{stats.backend_py.0}} Python files ({{stats.backend_py.1}} lines), {{stats.frontend_src.0}} TypeScript files ({{stats.frontend_src.1}} lines), {{stats.endpoints}} endpoints, {{stats.tables}} tables, {{stats.pages}} page components |
 | Tests | {{tests.total}} automated: pytest {{tests.pytest.total}} (also {{tests.pytest_pg.total}} on PostgreSQL 18), Vitest {{tests.vitest.total}}, Playwright {{tests.playwright.total}}; back-end coverage {{cov.backend.pct}} % |

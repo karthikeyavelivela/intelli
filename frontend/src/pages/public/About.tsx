@@ -31,7 +31,7 @@ export default function About() {
         <div className="card p-8 md:p-10" data-testid="about-project">
           <p className="eyebrow">About this project</p>
           <h2 id="about-project" className="display mt-2 text-4xl">An academic capstone, not a commercial product</h2>
-          <p className="mt-4 max-w-3xl text-muted-foreground">IntelliMetrics AI is a university capstone project by <b className="text-foreground">Devi Priya, Priyanka, Akshay and Bhaskar</b>, guided by <b className="text-foreground">Dr. Asesh Kumar Tripathy</b>, KL University, academic year 2026-27. It studies how a governed semantic layer plus a carefully constrained AI assistant can remove the "which revenue is the real revenue?" problem.</p>
+          <p className="mt-4 max-w-3xl text-muted-foreground">IntelliMetrics AI is a university capstone project by <b className="text-foreground">Devi Priya, Priyanka, Akshay and Bhaskar</b>, KL University, academic year 2026-27. It studies how a governed semantic layer plus a carefully constrained AI assistant can remove the "which revenue is the real revenue?" problem.</p>
           <p className="mt-3 max-w-3xl text-muted-foreground">All organisations, people, phone numbers and transactions in the demo (Bharat Retail Pvt Ltd, Sagar Foods &amp; Beverages Ltd) are <b className="text-foreground">synthetic demonstration data</b>. Amounts are in Indian rupees, the financial year runs April to March, and times are shown in IST.</p>
         </div>
       </section>

@@ -26,7 +26,7 @@ SRC, DATA, GEN, SHOTS, DIAG, CHARTS, EXPORTS, BUILD = (DOCS / "src", DOCS / "dat
 for d in (EXPORTS, BUILD, BUILD / "img"):
     d.mkdir(parents=True, exist_ok=True)
 
-META = {"student": "Devi Priya, Priyanka, Akshay and Bhaskar", "guide": "Dr. Asesh Kumar Tripathy", "university": "KL University", "year": "2026-27", "project": "IntelliMetrics AI: A Governed Semantic Layer with TARA, an AI Assistant for Trusted Business Metrics"}
+META = {"student": "Devi Priya, Priyanka, Akshay and Bhaskar", "university": "KL University", "year": "2026-27", "project": "IntelliMetrics AI: A Governed Semantic Layer with TARA, an AI Assistant for Trusted Business Metrics"}
 TODAY = dt.datetime.now(ZoneInfo("Asia/Kolkata"))
 
 COMPACT = {"02_Concept_Note", "07_Viva_Preparation", "08_Presentation_Outline"}
@@ -411,7 +411,7 @@ def module_shots(*slugs):
 # ============================================================================= placeholder expansion
 def titlepage(title: str, subtitle: str) -> str:
     m = META
-    rows = [("Project title", m["project"]), ("Document", title), ("Team members", m["student"]), ("Guide", m["guide"]), ("Institution", m["university"]), ("Academic year", m["year"]), ("Date", D["today"] + " (IST)"), ("Status", "University project: academic capstone with synthetic demonstration data")]
+    rows = [("Project title", m["project"]), ("Document", title), ("Team members", m["student"]), ("Institution", m["university"]), ("Academic year", m["year"]), ("Date", D["today"] + " (IST)"), ("Status", "University project: academic capstone with synthetic demonstration data")]
     t = "| | |\n|---|---|\n" + "\n".join(f"| **{k}** | {v} |" for k, v in rows)
     return f'<div class="titlepage"></div>\n\n# {title} {{.unnumbered .title-heading}}\n\n*{subtitle}*\n\n{t}\n\n' + PAGEBREAK
 

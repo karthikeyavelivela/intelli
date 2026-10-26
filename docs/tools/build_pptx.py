@@ -29,7 +29,7 @@ SLIDES = [
     ("IntelliMetrics AI", [
         "A governed semantic layer with TARA, an AI assistant for trusted business metrics",
         META['student'],
-        f"Guide: {META['guide']} | {META['university']} | AY {META['year']}",
+        f"{META['university']} | AY {META['year']}",
         "University project (academic capstone). Demonstration data is synthetic.",
     ], None, "Introduce yourself, the guide and the project name. Say at once that it is a university project with synthetic data."),
     ("The problem: one word, many numbers", [
@@ -126,7 +126,6 @@ SLIDES = [
     ], None, "Close with the contribution: an integrated, tested, honest implementation."),
     ("Thank you. Questions?", [
         META['student'],
-        f"Guide: {META['guide']}",
         "Documents: Project Report, Concept Note, Architecture, Testing Report, User Guide, Deployment Guide, Viva Preparation",
     ], None, "Invite questions. The Viva Preparation document lists forty likely ones."),
 ]

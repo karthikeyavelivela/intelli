@@ -9,10 +9,9 @@
 | **Project title** | IntelliMetrics AI: A Governed Semantic Layer with TARA, an AI Assistant for Trusted Business Metrics |
 | **Document** | Project Report |
 | **Team members** | Devi Priya, Priyanka, Akshay and Bhaskar |
-| **Guide** | Dr. Asesh Kumar Tripathy |
 | **Institution** | KL University |
 | **Academic year** | 2026-27 |
-| **Date** | 24-Oct-2026 (IST) |
+| **Date** | 26-Oct-2026 (IST) |
 | **Status** | University project: academic capstone with synthetic demonstration data |
 
 ```{=openxml}

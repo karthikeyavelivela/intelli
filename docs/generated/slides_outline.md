@@ -7,7 +7,7 @@ The deck `exports/08_Presentation.pptx` contains these slides, with the speaker 
 
 * A governed semantic layer with TARA, an AI assistant for trusted business metrics
 * Devi Priya, Priyanka, Akshay and Bhaskar
-* Guide: Dr. Asesh Kumar Tripathy | KL University | AY 2026-27
+* KL University | AY 2026-27
 * University project (academic capstone). Demonstration data is synthetic.
 
 *Speaker notes:* Introduce yourself, the guide and the project name. Say at once that it is a university project with synthetic data.
@@ -169,7 +169,6 @@ The deck `exports/08_Presentation.pptx` contains these slides, with the speaker 
 ## Slide 16: Thank you. Questions?
 
 * Devi Priya, Priyanka, Akshay and Bhaskar
-* Guide: Dr. Asesh Kumar Tripathy
 * Documents: Project Report, Concept Note, Architecture, Testing Report, User Guide, Deployment Guide, Viva Preparation
 
 *Speaker notes:* Invite questions. The Viva Preparation document lists forty likely ones.

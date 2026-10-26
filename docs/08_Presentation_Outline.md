@@ -9,10 +9,9 @@
 | **Project title** | IntelliMetrics AI: A Governed Semantic Layer with TARA, an AI Assistant for Trusted Business Metrics |
 | **Document** | Presentation Outline |
 | **Team members** | Devi Priya, Priyanka, Akshay and Bhaskar |
-| **Guide** | Dr. Asesh Kumar Tripathy |
 | **Institution** | KL University |
 | **Academic year** | 2026-27 |
-| **Date** | 24-Oct-2026 (IST) |
+| **Date** | 26-Oct-2026 (IST) |
 | **Status** | University project: academic capstone with synthetic demonstration data |
 
 ```{=openxml}
@@ -88,7 +87,7 @@ The deck `exports/08_Presentation.pptx` contains these slides, with the speaker 
 
 * A governed semantic layer with TARA, an AI assistant for trusted business metrics
 * Devi Priya, Priyanka, Akshay and Bhaskar
-* Guide: Dr. Asesh Kumar Tripathy | KL University | AY 2026-27
+* KL University | AY 2026-27
 * University project (academic capstone). Demonstration data is synthetic.
 
 *Speaker notes:* Introduce yourself, the guide and the project name. Say at once that it is a university project with synthetic data.
@@ -250,7 +249,6 @@ The deck `exports/08_Presentation.pptx` contains these slides, with the speaker 
 ## 3.16 Slide 16: Thank you. Questions? {#sec-3-16}
 
 * Devi Priya, Priyanka, Akshay and Bhaskar
-* Guide: Dr. Asesh Kumar Tripathy
 * Documents: Project Report, Concept Note, Architecture, Testing Report, User Guide, Deployment Guide, Viva Preparation
 
 *Speaker notes:* Invite questions. The Viva Preparation document lists forty likely ones.

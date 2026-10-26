@@ -95,8 +95,7 @@ test("capture all pages in both themes", async ({ browser }) => {
     // TARA metric generator with a real suggestion
     await page.goto("/app/generator");
     await expect(page.getByTestId("gen-dataset").locator("option")).not.toHaveCount(1);
-    const opts = await page.getByTestId("gen-dataset").locator("option").allTextContents();
-    await page.getByTestId("gen-dataset").selectOption({ index: opts.findIndex((o) => o.includes("sales_transactions")) });
+    await page.getByTestId("gen-dataset").selectOption({ label: "sales_transactions" });
     await page.getByTestId("gen-prompt").fill("Number of distinct customers who ordered in the South region");
     await page.getByTestId("gen-submit").click();
     await expect(page.getByTestId("gen-result")).toBeVisible({ timeout: 30_000 });
