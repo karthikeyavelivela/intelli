@@ -91,4 +91,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: docker compose config -q
-      - run: docker compose build
+      - name: Start the full stack (PostgreSQL, Redis, API, Celery worker, Nginx)
+        run: docker compose up -d --build --wait --wait-timeout 300
+      - name: Smoke test through the web server
+        run: bash scripts/compose_smoke.sh
+      - name: Show service logs if something failed
+        if: failure()
+        run: docker compose ps -a && docker compose logs --no-color --tail=120
+      - name: Stop the stack
+        if: always()
+        run: docker compose down -v
