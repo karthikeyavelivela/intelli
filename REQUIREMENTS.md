@@ -11,7 +11,7 @@ Exact versions used to develop and test IntelliMetrics AI. Install commands are 
 | npm | 10 or newer (11.10 used) | Front end packages |
 | Browser | Chrome or Edge, current | Using the application (Playwright downloads its own Chromium for tests) |
 | Disk space | about 3 GB | Packages, browser for tests, demo data |
-| Docker Desktop | optional; not run during development | Compose route |
+| Docker Desktop (or Docker Engine) | optional; the Compose stack passes its smoke test on GitHub Actions | Compose route |
 | PostgreSQL / Redis | optional (18.2 and 3.0 used for verification) | Production-style topology |
 
 No paid service, account or API key is needed. An OpenAI or Gemini key is optional (TARA runs offline without one).

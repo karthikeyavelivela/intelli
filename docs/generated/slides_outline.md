@@ -149,7 +149,7 @@ The deck `exports/08_Presentation.pptx` contains these slides, with the speaker 
 
 ## Slide 14: Honest limitations
 
-* Docker Compose written but never run (Docker not installed)
+* Docker Compose tested on GitHub Actions, not on our own machines
 * No live AI provider tested; offline planner only
 * Synthetic data; no user study; no external security audit
 * Chromium only; no load test; per-process rate limiter

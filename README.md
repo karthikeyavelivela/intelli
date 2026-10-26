@@ -116,7 +116,7 @@ Then edit `.env`. The back end reads it automatically from the project folder (o
 | Process uploads with Celery and Redis | `USE_CELERY=true` and `REDIS_URL=redis://localhost:6379/0` |
 | Password-reset links in local use | `FRONTEND_URL=http://localhost:5173` |
 
-AI keys stay on the server. They are never sent to the browser. After changing `.env`, stop and start the back end. To make a good `SECRET_KEY`: `python -c "import secrets; print(secrets.token_urlsafe(48))"`. The full list of settings is in [DEPLOYMENT.md](DEPLOYMENT.md).
+AI keys stay on the server. They are never sent to the browser. After changing `.env`, stop and start the back end. To check that your key works, run `python scripts/verify_ai_key.py`: it sends one tiny request and prints PASS, or the reason it failed (wrong key, no credit on the account, no internet). To make a good `SECRET_KEY`: `python -c "import secrets; print(secrets.token_urlsafe(48))"`. The full list of settings is in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ### Option B: Docker Compose (database, Redis, worker and web server together)
 
@@ -127,7 +127,7 @@ cp .env.example .env          # edit SECRET_KEY and POSTGRES_PASSWORD
 docker compose up --build
 ```
 
-Open <http://localhost:3000>. The first start creates the database and the demo data. Stop with Ctrl+C, then `docker compose down`. **This option has not been run by the authors** because Docker was not installed on the development machine; see the [Deployment Guide](docs/06_Deployment_Guide.md) for what was and was not verified.
+Open <http://localhost:3000>. The first start creates the database and the demo data. Stop with Ctrl+C, then `docker compose down`. This option is tested automatically on GitHub: every push builds the images, starts the whole stack and checks health, login through Nginx, an Ask TARA answer and a CSV upload processed by the Celery worker ([latest run](https://github.com/karthikeyavelivela/intelli/actions/runs/40277615858)). It was not run on the authors' own computers (Docker is not installed there). See the [Deployment Guide](docs/06_Deployment_Guide.md).
 
 ### Run the tests
 
@@ -178,9 +178,9 @@ The latest measured test results (counts, coverage, benchmarks) are in the [Test
 
 ## Limitations, stated plainly
 
-* Docker and Docker Compose were **not run** (Docker not installed on the development machine); each service was verified separately instead (PostgreSQL 18.2, Redis + Celery, MySQL 8.0).
+* Docker Compose was **not run on the authors' computers** (Docker is not installed there). It is tested on GitHub's Linux runners instead; locally each service was verified separately (PostgreSQL 18.2, Redis + Celery, MySQL 8.0).
 * **No live AI provider was used**; the offline planner is what was tested end to end, and the AI provider code was tested with mocked responses.
-* The GitHub Actions workflow in `.github/workflows` was written but has not been executed on GitHub.
+* VPS and free-cloud deployment are documented but nothing was deployed to a real server.
 * No load test, no external security assessment, no user study; browser tests used Chromium only.
 * Time-saving figures in the evaluation use stated assumptions for manual effort.
 

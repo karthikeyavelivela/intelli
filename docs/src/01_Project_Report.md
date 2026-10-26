@@ -356,7 +356,7 @@ Docker was not available on the development machine, so the *components* of the 
 
 # Limitations
 
-* **Docker Compose was not executed** (Docker is not installed on the development machine). The Dockerfiles, Compose file and Nginx configuration are written to specification and are checked in CI, but the image builds were not run here.
+* **Docker Compose was not run on the authors' computers** (Docker is not installed there). It is built, started and smoke-tested on GitHub's Linux runner on every push, and that test passes; behaviour beyond the smoke test was not exercised.
 * **No real OpenAI or Gemini call was made** (no API key). The client, structured-output validation, repair loop and fallbacks are covered by tests with a mocked provider; live behaviour and cost are unverified.
 * The AI acceptance rate and the metric-creation time saving come from a *scripted* offline session and stated assumptions, not from a user study.
 * All data is synthetic; accuracy of Indian calendar knowledge is limited to the festival windows encoded in `calendar_in.py`.

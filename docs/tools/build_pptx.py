@@ -112,7 +112,7 @@ SLIDES = [
         "Time-saving estimates rely on stated assumptions, not measurements",
     ], "charts/query_latency.png", "Single-user numbers from one Windows machine. Say clearly that there was no load test."),
     ("Honest limitations", [
-        "Docker Compose written but never run (Docker not installed)",
+        "Docker Compose tested on GitHub Actions, not on our own machines",
         "No live AI provider tested; offline planner only",
         "Synthetic data; no user study; no external security audit",
         "Chromium only; no load test; per-process rate limiter",

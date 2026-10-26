@@ -29,7 +29,7 @@
 - [1 Purpose and honesty note](#sec-1)
 - [2 Architecture to deploy](#sec-2)
 - [3 Option 1: local machine without Docker (tested)](#sec-3)
-- [4 Option 2: Docker Compose on one machine (written, not run)](#sec-4)
+- [4 Option 2: Docker Compose on one machine (tested on GitHub Actions)](#sec-4)
 - [5 Option 3: a small VPS with a domain (documented only)](#sec-5)
 - [6 Option 4: free cloud hosting services (documented only)](#sec-6)
 - [7 Environment variable reference](#sec-7)
@@ -61,7 +61,7 @@ Each deployment path below is marked with how far it was actually exercised. Rea
 | Redis + Celery worker | **Verified**: a real worker consumed an ingestion job from a real Redis broker (job 748 ms for 62,000 rows) |
 | PostgreSQL and MySQL as *import sources* | **Verified** against isolated local servers (PostgreSQL 18.2, MySQL 8.0.40) |
 | Production front-end build (`vite build`) | **Run** successfully |
-| Docker images and `docker compose up` | **Written, not run.** Docker is not installed on the development machine, so the images were never built |
+| Docker images and `docker compose up` | **Tested on GitHub Actions** (Ubuntu runner): the images build, PostgreSQL 16, Redis, API, Celery worker and Nginx all start, and a smoke test passes (health, front end, login through Nginx, an Ask TARA rupee answer, a CSV upload processed by the Celery worker). Not run on the authors' own computers, where Docker is not installed |
 | VPS with Nginx and Let's Encrypt | **Documented only.** No server was used; the commands follow standard practice |
 | Free cloud hosting (Render, Railway, Vercel, Netlify) | **Documented only.** No account was created and nothing was deployed |
 
@@ -99,7 +99,7 @@ uvicorn app.main:app --port 8000 &
 celery -A app.worker.celery_app worker --pool=solo --loglevel=INFO   # on Windows use --pool=solo
 ```
 
-# 4 Option 2: Docker Compose on one machine (written, not run) {#sec-4}
+# 4 Option 2: Docker Compose on one machine (tested on GitHub Actions) {#sec-4}
 
 Prerequisites: Docker Engine 24 or newer with the Compose plugin, about 3 GB of disk, and free ports 3000 and 8000.
 
@@ -227,6 +227,6 @@ alembic downgrade -1
 
 1. **No e-mail provider is bundled**, so password-reset links are shown only in development.
 2. **The rate limiter is per process**; with several API workers the effective limit is multiplied.
-3. **Container images were never built** in this project; the first `docker compose up --build` may reveal a packaging mistake that the tests could not. Also note that Compose pins PostgreSQL 16 whereas the verification used PostgreSQL 18.2; no PostgreSQL 16 server was run.
+3. **Containers were not run on the authors' computers.** They were built and started on GitHub's Linux runner with a scripted smoke test (`scripts/compose_smoke.sh`); anything outside that script, such as restarts, volume backups or version updates, was not exercised. Compose pins PostgreSQL 16 (also used by the CI back-end job), whereas the local verification used PostgreSQL 18.2.
 4. **Shared storage**: API and worker must see the same dataset directory; this limits some free cloud hosting.
 5. **Single-region, single-database** design; there is no high-availability configuration.

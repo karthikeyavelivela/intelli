@@ -11,9 +11,9 @@ Short reference for running IntelliMetrics AI (a university project with synthet
 | Redis + a real Celery worker processing an upload | **Verified** (worker pool `solo` on Windows) |
 | PostgreSQL 18.2 and MySQL 8.0.40 as import sources | **Verified** against isolated local servers |
 | `vite build` of the front end | **Run** |
-| Docker images and `docker compose up` | **Written, not run** (Docker is not installed on the development machine) |
+| Docker images and `docker compose up` | **Tested on GitHub Actions** (Ubuntu): images build, the full stack starts, and a smoke test passes. Not run on the authors' computers (no Docker installed) |
 | VPS with Nginx and Let's Encrypt; free cloud hosting | **Documented only**; nothing was deployed |
-| GitHub Actions workflow | **Written, not executed** |
+| GitHub Actions workflow | **Runs on every push**; all 5 jobs pass (back end on SQLite and PostgreSQL 16, front end, browser tests, Docker stack) |
 
 ## 1. Local, no Docker
 
@@ -27,7 +27,7 @@ cd ../frontend && npm install && npm run dev                     # http://localh
 
 Production-style locally: set `DATABASE_URL=postgresql://...`, `REDIS_URL=redis://...`, `USE_CELERY=true`, run `alembic upgrade head`, `python -m app.seed`, start `uvicorn`, and start a worker with `celery -A app.worker.celery_app worker --pool=solo` (`--pool=solo` on Windows).
 
-## 2. Docker Compose (not run)
+## 2. Docker Compose (tested on GitHub Actions)
 
 ```bash
 cp .env.example .env        # set SECRET_KEY (>= 32 random characters) and POSTGRES_PASSWORD

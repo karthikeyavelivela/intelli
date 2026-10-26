@@ -425,7 +425,7 @@ Because Docker was not available on the development machine, the services that D
 | Demonstration walkthrough | `scripts/verify_walkthrough.py` against the running back end after a full reset and re-seed: six logins, role restrictions, conflict workflow, Formula Lab with an injection attempt, eight Ask TARA questions, dashboard widgets, audit log and cross-workspace isolation | 36 of 36 checks passed |
 | Screenshot sweep | `frontend/e2e/shots.mjs`: every page in light and dark, desktop and 390 px phone, checking console errors, HTTP 5xx and horizontal overflow | The sweep found one real overflow bug (defect 16), fixed; the final run reported no problems |
 | Image URLs | HTTP request for each of the 37 stock-image URLs used by the site | 37 returned HTTP 200 |
-| Commercial-language check | `scripts/check_no_pricing.py` over all source, configuration and documentation files | 0 unexplained hits; 205 allow-listed hits that use an unrelated sense of a word (a TARA "plan", the Alembic `upgrade` command, a product unit price in the sales data, or a test that asserts pricing is absent) |
+| Commercial-language check | `scripts/check_no_pricing.py` over all source, configuration and documentation files | 7 unexplained hits; 205 allow-listed hits that use an unrelated sense of a word (a TARA "plan", the Alembic `upgrade` command, a product unit price in the sales data, or a test that asserts pricing is absent) |
 
 # 12 Visual and accessibility checks {#sec-12}
 
@@ -456,7 +456,7 @@ python scripts/benchmark.py
 
 An honest list, so that nobody reads more into this report than it supports.
 
-1. **Docker and Docker Compose were never run.** Docker is not installed on the development machine. The `Dockerfile`s, `docker-compose.yml` and Nginx configuration were written and reviewed, and every service they start was verified individually (PostgreSQL, Redis + Celery, MySQL), but the container images were **not built** and the Compose stack was **not started**.
+1. **Docker was not run on the authors' computers** (it is not installed there). The container images, the Compose stack and a scripted smoke test (`scripts/compose_smoke.sh`) run on GitHub's Linux runner instead and pass; locally each service was verified individually (PostgreSQL, Redis + Celery, MySQL). Behaviour beyond the smoke test (restarts, volume backups, version updates) was not exercised.
 2. **No live AI provider was used.** There was no OpenAI or Gemini key. The provider adapters were tested with mocked responses only; real-model behaviour, cost and latency are unmeasured. The offline deterministic mode is what was exercised end to end.
 3. **No load or concurrency testing** beyond single-user latency measurements. Behaviour with many simultaneous users is unmeasured. The rate limiter is per-process, so it would need Redis-backed storage to be correct with several API workers.
 4. **No external security assessment.** Only the application-level tests above.
@@ -465,4 +465,4 @@ An honest list, so that nobody reads more into this report than it supports.
 7. **The Windows development machine only.** Linux and macOS were not used, although the code uses portable paths and the Compose files target Linux containers.
 8. **External MySQL/PostgreSQL import** was verified against isolated local servers, not against a managed cloud database.
 9. **Backups, restore and zero-downtime updates** are documented in the Deployment Guide but were not exercised.
-10. **The GitHub Actions workflow** (`.github/workflows/ci.yml`) was written but never run on GitHub; the same commands were run by hand locally instead (the Docker build job in it was not run at all).
+10. **The GitHub Actions workflow** (`.github/workflows/ci.yml`) runs on every push. Its first run exposed one date-dependent test (a Diwali-season expectation that changed when the 2026 season started); it was fixed by freezing "today" in the test, and all five jobs now pass.

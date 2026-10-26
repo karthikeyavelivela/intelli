@@ -58,14 +58,14 @@ scripts\reset-demo.ps1      # Windows
 
 This deletes the local database and uploaded files and seeds again. Stop the back end first, because Windows locks the SQLite file while it is running.
 
-# Run it with Docker Compose (not executed in development)
+# Run it with Docker Compose (tested on GitHub Actions)
 
 ```bash
 cp .env.example .env     # set SECRET_KEY and POSTGRES_PASSWORD
 docker compose up --build
 ```
 
-Open <http://localhost:3000>. This starts PostgreSQL, Redis, the API, a Celery worker and an Nginx front end. **This path was written but has not been run**, because Docker is not installed on the development machine; the services it starts were each verified separately (see the Testing Report). If a step fails, the Deployment Guide has a troubleshooting table.
+Open <http://localhost:3000>. This starts PostgreSQL, Redis, the API, a Celery worker and an Nginx front end. **This path is tested automatically on GitHub** (the stack is built, started and smoke-tested on every push) but was not run on the authors' own computers, where Docker is not installed. If a step fails, the Deployment Guide has a troubleshooting table.
 
 # Configuration
 

@@ -17,7 +17,7 @@ It contains two spoken pitches, a one-page fact sheet, forty questions an examin
 >
 > Our project is a **governed semantic layer** with an AI assistant. There are four ideas. First, **one live definition per metric**, enforced by a unique index in the database, with every change stored as an immutable version; rolling back creates a new version instead of rewriting history. Second, **automatic conflict detection**: the system compares formula, aggregation, filters, unit, time window and dataset, rates the severity, and walks the team through assign, review, approve and resolve. On {{bench.evaluation.conflict_detection.cases}} labelled test cases it reached precision {{bench.evaluation.conflict_detection.automated.precision}} and recall {{bench.evaluation.conflict_detection.automated.recall}}, against precision {{bench.evaluation.conflict_detection.naive_manual.precision}} for a plain text comparison. Third, **TARA never writes numbers**. A question is turned into a structured plan, validated against the approved catalogue, and compiled by our own parser into parameterised DuckDB SQL; raw SQL is never accepted. Fourth, it is **built for India**: lakh and crore formatting, the financial year starting on 1 April, GST-aware metrics, festival windows such as Diwali, and IST times.
 >
-> It is a full stack: React front end, FastAPI back end, PostgreSQL or SQLite, DuckDB on Parquet files, Celery for background jobs, {{stats.endpoints}} API endpoints, and {{tests.total}} automated tests. We will also tell you plainly what we did not do: Docker was not available on our machine so the Compose stack was not run, and no live AI key was used, so the AI mode shown is the offline deterministic one."
+> It is a full stack: React front end, FastAPI back end, PostgreSQL or SQLite, DuckDB on Parquet files, Celery for background jobs, {{stats.endpoints}} API endpoints, and {{tests.total}} automated tests. We will also tell you plainly what we did not do: Docker was not installed on our machines, so the Compose stack was tested on GitHub's servers rather than ours, and no live AI key was used, so the AI mode shown is the offline deterministic one."
 
 # Fact sheet
 
@@ -30,7 +30,7 @@ It contains two spoken pitches, a one-page fact sheet, forty questions an examin
 | Tests | {{tests.total}} automated: pytest {{tests.pytest.total}} (also {{tests.pytest_pg.total}} on PostgreSQL 18), Vitest {{tests.vitest.total}}, Playwright {{tests.playwright.total}}; back-end coverage {{cov.backend.pct}} % |
 | Demo data | {{bench.dataset.rows}} synthetic sales lines, {{bench.dataset.columns}} columns, Bharat Retail Pvt Ltd; second workspace Sagar Foods & Beverages Ltd |
 | Speed (measured) | Metric query engine median {{bench.query_latency.engine_ms.p50}} ms, p95 {{bench.query_latency.engine_ms.p95}} ms; ingestion about {{bench.evaluation.dataset_processing.rows_per_second}} rows per second |
-| Not done | Docker never run; no live AI key; no load test; no external security audit; no user study |
+| Not done | Docker not run on our own machines (tested on GitHub Actions instead); no live AI key; no load test; no external security audit; no user study |
 
 # Forty likely questions
 
@@ -155,7 +155,7 @@ SQLite gives zero-setup development and fast tests; PostgreSQL is the production
 Large uploads must not block web requests. Celery runs ingestion in a separate worker. Without Redis the API falls back to a background thread so a laptop demo needs nothing extra. We verified a real Celery worker with a real Redis broker.
 
 **37. Did you run Docker?**
-**No.** Docker is not installed on our machine, so the Dockerfiles and Compose file are written and reviewed but untested. We verified the services separately (PostgreSQL, Redis with Celery, MySQL as import source). The first Compose run on another machine may reveal a packaging issue.
+**Not on our own computers**, because Docker is not installed there. GitHub Actions builds the images, starts the whole stack (PostgreSQL, Redis, API, Celery worker, Nginx) and runs a smoke test on every push, and that passes. We also verified the services separately on our machines (PostgreSQL, Redis with Celery, MySQL as import source). Anything beyond the smoke test, such as backups or version updates, was not tested.
 
 **38. What are the project's main limitations?**
 Offline planner is limited; no live AI run; time-saving figures use assumed manual durations; synthetic data only; single-machine measurements; Chromium-only browser tests; no load test, no external security audit, no usability study; no e-mail delivery.
