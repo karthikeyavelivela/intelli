@@ -227,7 +227,10 @@ def test_top_states_customers_and_split(business):
     assert "did not name a metric" in sp["text"]  # the Revenue default is disclosed
 
 
-def test_diwali_comparison_is_data_backed_and_labelled(business):
+def test_diwali_comparison_is_data_backed_and_labelled(business, monkeypatch):
+    # Freeze "today" so the test does not depend on the wall clock: from 25-Oct-2026 the Diwali 2026 season has started
+    # and is (correctly) the latest window, which would change the expected ranges.
+    monkeypatch.setattr("app.services.planner.today_ist", lambda: dt.date(2026, 3, 1))
     a = business.post("/api/chat/ask", json={"question": SUGGESTED[2]}).json()
     ap = a["applied"]
     assert "Diwali season" in ap["time_range"]["label"] and "previous quarter" in ap["compare_range"]["label"]
